@@ -1,0 +1,16 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<?php $_product = Mage::registry('product'); ?>
+
+<a class="button" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->__('Return To Product') ?></a>

@@ -1,0 +1,22 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+
+<?php $_product = $this->getProduct() ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+	<li class="add-to-wishlist">
+		<a class="link-wishlist button button-small button-subtle" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;"><?php echo $this->__('Add to Wishlist') ?></a>
+		<?php /*<span><?php echo $this->__('Save a reminder for later') ?></span>*/ ?>
+	</li>
+<?php endif; ?>

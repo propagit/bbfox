@@ -1,0 +1,104 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.5
+ */
+?>
+
+<?php
+/**
+ * Product list template
+ *
+ * @see Mage_Catalog_Block_Product_List
+ */
+?>
+
+<?php
+// GravDept:
+// Custom template.
+// Based on: /app/design/frontend/base/default/template/catalog/product/list.phtml
+// + Custom code
+// + Forced 'list' mode
+?>
+
+<?php $_productCollection = $this->getLoadedProductCollection() ?>
+<?php $_collectionSize = $_productCollection->count(); ?>
+
+<?php if( $_collectionSize === 0): ?>
+
+	<h2><?php echo ($this->getLabel()) ? $this->getLabel() : $this->__('Featured Products') ?></h2>
+	<p><?php echo $this->__('No products found.') ?></p>
+	
+<?php else: ?>
+
+	<?php /* GravDept, set column count from XML layout or CMS Page template tags (default:2) */ ?>
+	<?php $_columnCount = $this->getColumnCount(); ?>
+	
+	<?php /* GravDept, set column count manually here */ ?>
+	<?php /*$_columnCount = 4;*/ ?>
+	
+	<div class="product-slider cols_<?php echo $_columnCount; ?>">
+		<h2><?php echo ($this->getLabel()) ? $this->getLabel() : $this->__('Featured Products') ?></h2>
+		
+		<?php if ( $_collectionSize > $_columnCount ): ?>
+			<div class="slides-controls">
+				<a href="#" title="<?php echo $this->__('Previous') ?>" class="prev"><?php echo $this->__('Previous') ?></a>
+				<a href="#" title="<?php echo $this->__('Next') ?>" class="next"><?php echo $this->__('Next') ?></a>
+			</div>
+		<?php endif; ?>
+		
+		<div class="slides-container">
+			<?php $i=0; foreach ($_productCollection as $_product): ?>
+				<?php if ($i++%$_columnCount==0): ?>
+					<div class="slide">
+						<ol class="slide-product-list">
+				<?php endif; ?>
+				            
+				            <?php
+				            /* GravDept. Get data to check if product is new. */
+				            $gravdept_now = date("Y-m-d");
+				            $gravdept_newFrom = substr($_product->getNewsFromDate(), 0, 10);
+				            $gravdept_newTo = substr($_product->getNewsToDate(), 0, 10);
+				            ?>
+				            
+							<li>
+								<a class="product-image" href="<?php echo $_product->getProductUrl() ?>">
+								    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" alt="<?php echo $this->escapeHtml($this->getImageLabel($_product, 'small_image')) ?>" />
+								    
+								    <?php /* GravDept. Check if product is new. */ ?>
+								    <?php if ( $gravdept_now >= $gravdept_newFrom && $gravdept_now <= $gravdept_newTo ): ?>
+								        <div class="is-new-product">New</div>
+								    <?php endif; ?>
+								    
+								    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+								</a>
+								
+								<a class="product-name" href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a>
+								
+								<?php echo $this->getPriceHtml($_product, true) ?>
+							</li>
+				
+				<?php if ($i%$_columnCount==0 && $i!=$_collectionSize): ?>
+						</ol>
+					</div><?php /* END .slide */ ?>
+				<?php endif ?>
+			<?php endforeach ?>
+			
+			<?php for($i;$i%$_columnCount!=0;$i++): ?>
+				<?php /* GravDept, do nothing. Raises $i count for balanced <td> in <tr> */ ?>
+			<?php endfor ?>
+			
+			<?php if ($i%$_columnCount==0): ?>
+						</ol>
+					</div><?php /* END .slide */ ?>
+			<?php endif ?>
+		</div>
+	</div>
+	
+<?php endif; ?>

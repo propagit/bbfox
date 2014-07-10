@@ -1,0 +1,92 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.2.4
+ */
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+
+<?php if($this->getCollection()->getSize()): ?>
+
+	<!-- pager -->
+	<div class="pager">
+		<?php echo $this->getPagerHtml() ?>
+		
+		<p class="amount">
+			<?php if($this->getLastPageNum()>1): ?>
+			    <?php echo $this->__('<strong>Items %s - %s</strong> of %s total', $this->getFirstNum(), $this->getLastNum(), $this->getTotalNum()) ?>
+			<?php elseif( $this->getLastPageNum()==1 && $this->getTotalNum()==1 ): ?>
+				<?php echo $this->__('%s item', $this->getTotalNum()) ?> 
+			<?php else: ?>
+			    <?php echo $this->__('%s items', $this->getTotalNum()) ?>
+			<?php endif; ?>
+		</p>
+	</div>
+	
+	<!-- sort -->
+	<?php if( $this->isExpanded() ): ?>
+		<div class="sort-by">
+			<label for="options_sort"><?php echo $this->__('Sort by') ?></label>
+			<select id="options_sort" onchange="setLocation(this.value)">
+				<?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+					<option value="<?php echo $this->getOrderUrl($_key, 'asc') ?>"<?php if($this->isOrderCurrent($_key)): ?> selected="selected"<?php endif; ?>>
+						<?php echo $this->__($_order) ?>
+					</option>
+				<?php endforeach; ?>
+			</select>
+			
+			<?php if($this->getCurrentDirection() == 'desc'): ?>
+				<a class="reverse" href="<?php echo $this->getOrderUrl(null, 'asc') ?>" title="<?php echo $this->__('Reverse sort direction') ?>"><?php echo $this->__('Reverse sort direction') ?></a>
+			<?php else: ?>
+				<a class="reverse" href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Reverse sort direction') ?>"><?php echo $this->__('Reverse sort direction') ?></a>
+			<?php endif; ?>
+		</div>
+	<?php endif; ?>
+	
+	<div class="limiter">
+		<label for="options_show"><?php echo $this->__('Show') ?></label>
+		<select id="options_show" onchange="setLocation(this.value)">
+		<?php foreach ($this->getAvailableLimit() as $_key=>$_limit): ?>
+			<option value="<?php echo $this->getLimitUrl($_key) ?>"<?php if($this->isLimitCurrent($_key)): ?> selected="selected"<?php endif ?>>
+				<?php echo $_limit ?>
+				<?php if ( is_numeric($_limit) ) { echo $this->__(' per page'); } ?>
+				<?php if ( ! is_numeric($_limit) ) { echo $this->__(' items'); } ?>
+			</option>
+		<?php endforeach; ?>
+		</select>
+	</div>
+
+	<!-- view -->
+	<?php if( $this->isExpanded() ): ?>
+		<?php if( $this->isEnabledViewSwitcher() ): ?>
+		<div class="view-mode">
+			<?php $_modes = $this->getModes(); ?>
+			<?php if($_modes && count($_modes)>1): ?>
+				<label for="options_view"><?php echo $this->__('View as') ?></label>
+				<select id="options_view" onchange="setLocation(this.value)">
+				<?php foreach ($this->getModes() as $_code=>$_label): ?>
+					<?php if($this->isModeActive($_code)): ?>
+						<option value="<?php echo $this->getModeUrl($_code) ?>" selected="selected"><?php echo $_label ?></option>
+					<?php else: ?>
+						<option value="<?php echo $this->getModeUrl($_code) ?>"><?php echo $_label ?></option>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				</select>
+			<?php endif; ?>
+		</div>    
+		<?php endif; ?>
+	<?php endif; ?>
+	
+<?php endif ?>

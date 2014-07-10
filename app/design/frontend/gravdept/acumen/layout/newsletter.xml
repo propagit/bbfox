@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+
+-->
+<layout version="0.1.0">
+
+<!--
+Default layout, loads most of the pages
+-->
+
+	<default>
+		<!-- Mage_Newsletter -->
+		<reference name="footer">
+			<block type="newsletter/subscribe" name="newsletter" as="newsletter" template="newsletter/subscribe.phtml"/>
+		</reference>
+	</default>
+
+<!--
+Customer account pages, rendered for all tabs in dashboard
+-->
+
+	<customer_account>
+		<!-- Mage_Newsletter -->
+		
+		<!-- moved action to "customer.xml" because <position> does not work -->
+		<!--
+		<reference name="customer_account_navigation">
+			<action method="addLink" translate="label" module="newsletter"><name>newsletter</name><path>newsletter/manage/</path><label>Newsletter Subscriptions</label></action>
+		</reference>
+		-->
+	</customer_account>
+
+	<customer_account_index>
+		<reference name="right">
+			<action method="unsetChild"><name>right.newsletter</name></action>
+		</reference>
+	</customer_account_index>
+
+	<newsletter_manage_index translate="label">
+		<label>Customer My Account Newsletter Subscriptions</label>
+		<update handle="customer_account"/>
+		
+		<!-- custom -->
+		<reference name="head">
+			<action method="setHeaderTitle" translate="title" module="newsletter"><title>Newsletter</title></action>
+			<!--<action method="setForcedTitle"><title>Newsletter</title></action>-->   <!-- fallback -->
+		</reference>
+		
+		<reference name="my.account.wrapper">
+			<block type="customer/newsletter" name="customer_newsletter">
+				<block type="page/html_wrapper" name="customer.newsletter.form.before" as="form_before" translate="label">
+					<label>Newsletter Subscription Form Before</label>
+					<action method="setMayBeInvisible"><value>1</value></action>
+				</block>
+			</block>
+		</reference>
+	</newsletter_manage_index>
+
+</layout>

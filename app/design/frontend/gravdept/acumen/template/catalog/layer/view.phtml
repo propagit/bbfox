@@ -1,0 +1,57 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @see Mage_Catalog_Block_Layer_View
+ */
+?>
+
+<?php if($this->canShowBlock()): ?>
+
+	<div class="block block-layered-nav">
+	    <div class="block-title">
+		    <h2><?php echo $this->__('Shop By') ?></h2>
+		</div>
+		
+		<div class="block-content filter">
+			<?php /* GravDept: shows active filters. */ ?>
+			<?php echo $this->getStateHtml() ?>
+			
+			<?php /* GravDept: moved to /catalog/layer/state.phtml for simplicity. */ ?>
+			<?php /*
+			<?php if ($this->getLayer()->getState()->getFilters()): ?>
+	            <div class="actions"><a href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
+	        <?php endif; ?>
+	        */ ?>
+		
+			<?php if($this->canShowOptions()): ?>
+				<dl id="narrow-by-list">
+					<?php $_filters = $this->getFilters() ?>
+					<?php foreach ($_filters as $_filter): ?>
+						<?php if($_filter->getItemsCount()): ?>
+							<?php
+							// GravDept
+							// Both these nodes contain custom classes to enable basic filter styling.
+							?>
+							<dt class="<?php echo "filter-" . strtolower( preg_replace("/[^a-zA-Z0-9]/", "", $_filter->getName()) ) . "-title" ?>"><?php echo $this->__($_filter->getName()) ?></dt>
+							<dd class="<?php echo "filter-" . strtolower( preg_replace("/[^a-zA-Z0-9]/", "", $_filter->getName()) ) . "-content" ?>"><?php echo $_filter->getHtml() ?></dd>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</dl>
+			<?php endif; ?>
+		</div>
+	</div>
+	
+<?php endif; ?>

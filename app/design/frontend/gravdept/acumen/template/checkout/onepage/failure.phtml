@@ -1,0 +1,22 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<h2><?php echo $this->__('Processing Error') ?></h2>
+
+<?php if ($this->getRealOrderId()) : ?>
+	<p><?php echo $this->__('Order') ?> #<?php echo $this->getRealOrderId() ?></p>
+<?php endif ?>
+
+<?php if ($error = $this->getErrorMessage()) : ?>
+	<p><?php echo $error ?></p>
+<?php endif ?>

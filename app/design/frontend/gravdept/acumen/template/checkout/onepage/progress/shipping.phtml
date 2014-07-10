@@ -1,0 +1,31 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php if ($this->getCheckout()->getStepData('shipping', 'complete')): ?>
+    <div class="opc-progress-step-title complete">
+        <?php echo $this->__('Shipping Address'); ?>
+        <a href="#payment" class="button button-micro button-subtle" onclick="checkout.changeSection('opc-shipping'); return false;"><?php echo $this->__('Edit'); ?></a>
+    </div>
+    
+    <div class="opc-progress-step-content complete">
+        <address><?php echo $this->getShipping()->format('html'); ?></address>
+    </div>
+<?php else: ?>
+    <div class="opc-progress-step-title incomplete">
+        <?php echo $this->__('Shipping Address'); ?>
+    </div>
+
+    <div class="opc-progress-step-content incomplete">
+        <?php echo $this->__('Pending'); ?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,170 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.6
+*/
+?>
+
+<div class="block">
+    <div class="block-title">
+        <h2><?php echo $this->__('Write A Review') ?></h2>
+    </div>
+
+    <div class="block-content lined">
+        <?php if ($this->getAllowWriteReviewFlag()): ?>
+        	<form class="stack-form" action="<?php echo $this->getAction() ?>" method="post" id="review-form">
+                <?php echo $this->getBlockHtml('formkey'); ?>
+        		<?php echo $this->getChildHtml('form_fields_before'); ?>
+        		
+        		<p class="reviewing"><?php echo $this->__("Reviewing") ?>: <strong><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></strong></p>
+        		
+        		<?php /* Magento. Original code using 'TABLE and RADIO'. */ ?>
+        		<?php /*
+        		<?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
+        			<h4><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
+        			<span id="input-message-box"></span>
+        			<table class="data-table" id="product-review-table">
+        				<col />
+        				<col width="1" />
+        				<col width="1" />
+        				<col width="1" />
+        				<col width="1" />
+        				<col width="1" />
+        				<thead>
+        					<tr>
+        						<th>&nbsp;</th>
+        						<th><span class="nobr"><?php echo $this->__('1 star') ?></span></th>
+        						<th><span class="nobr"><?php echo $this->__('2 stars') ?></span></th>
+        						<th><span class="nobr"><?php echo $this->__('3 stars') ?></span></th>
+        						<th><span class="nobr"><?php echo $this->__('4 stars') ?></span></th>
+        						<th><span class="nobr"><?php echo $this->__('5 stars') ?></span></th>
+        					</tr>
+        				</thead>
+        				<tbody>
+        				<?php foreach ($this->getRatings() as $_rating): ?>
+        					<tr>
+        						<th><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></th>
+        					<?php foreach ($_rating->getOptions() as $_option): ?>
+        						<td class="value"><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></td>
+        					<?php endforeach; ?>
+        					</tr>
+        				<?php endforeach; ?>
+        				</tbody>
+        			</table>
+        			<input type="hidden" name="validate_rating" class="validate-rating" value="" />
+        			<script type="text/javascript">decorateTable('product-review-table')</script>
+        		<?php endif; ?>
+        		*/ ?>
+        		
+        		<ul class="form-list">
+        			<li>
+        				<label for="nickname_field" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+        				
+        				<div class="input-box">
+            				<input type="text" name="nickname" id="nickname_field" class="input-text required-entry" value="<?php echo $this->escapeHtml($data->getNickname()) ?>" title="<?php echo $this->__('Name') ?>" />
+            			</div>
+        			</li>
+        			
+        			<?php /* GravDept. Rebuilt code using 'UL and SELECT'. */ ?>
+        			
+        			<?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
+        				<?php foreach ($this->getRatings() as $_rating): ?>
+        					<li>
+        						<label for="ratings[<?php echo $_rating->getId() ?>]" class="required"><em>*</em><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></label>
+        						
+        						<div class="input-box">
+            						<select name="ratings[<?php echo $_rating->getId() ?>]" id="ratings[<?php echo $_rating->getId() ?>]">
+            							<option value=""><?php echo $this->__('Select...') ?></option>
+            							<?php $gravdept_i = 1; ?>
+            							
+            							<?php foreach ($_rating->getOptions() as $_option): ?>
+            								<?php if ($gravdept_i==1): ?>
+            									<option value="<?php echo $_option->getId() ?>"><?php echo $this->__('1 - Unsatisfactory') ?></option>
+            								<?php elseif ($gravdept_i==2): ?>
+            									<option value="<?php echo $_option->getId() ?>"><?php echo $this->__('2 - Poor') ?></option>
+            								<?php elseif ($gravdept_i==3): ?>
+            									<option value="<?php echo $_option->getId() ?>"><?php echo $this->__('3 - Average') ?></option>
+            								<?php elseif ($gravdept_i==4): ?>
+            									<option value="<?php echo $_option->getId() ?>"><?php echo $this->__('4 - Good') ?></option>
+            								<?php else: ?>
+            									<option value="<?php echo $_option->getId() ?>"><?php echo $this->__('5 - Excellent') ?></option>
+            								<?php endif; ?>
+            								
+            								<?php $gravdept_i++; ?>
+            							<?php endforeach; ?>
+            						</select>
+        	                    </div>
+        					</li>
+        				<?php endforeach; ?>
+        			<?php endif; ?>
+        			
+        			<li>
+        				<label for="summary_field" class="required"><em>*</em><?php echo $this->__('Review Title') ?></label>
+        				
+        				<div class="input-box">
+            				<input type="text" name="title" id="summary_field" class="input-text required-entry" value="<?php echo $this->escapeHtml($data->getTitle()) ?>" title="<?php echo $this->__('Review Title') ?>" />
+        				</div>
+        			</li>
+        			
+        			<li>
+        				<label for="review_field" class="required"><em>*</em><?php echo $this->__('Review Body') ?></label>
+        				
+        				<div class="input-box">
+            				<textarea name="detail" id="review_field" rows="5" class="input-text required-entry" title="<?php echo $this->__('Review Body') ?>"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
+            			</div>
+        			</li>
+        		</ul>
+        		
+        		<div class="buttons-set">
+            		<button type="submit" class="button"><?php echo $this->__('Submit Review') ?></button>
+            	</div>
+        	</form>
+        	
+        	<?php /* GravDept. Commented out because rating system was converted from 'TABLE and RADIO' to 'UL and SELECT'. */ ?>
+        	<?php /*
+        	<script type="text/javascript">
+        	//<![CDATA[
+        		var dataForm = new VarienForm('review-form');
+        		Validation.addAllThese(
+        		[
+        			   ['validate-rating', '<?php echo $this->__('Please select one of each of the ratings above') ?>', function(v) {
+        					var trs = $('product-review-table').select('tr');
+        					var inputs;
+        					var error = 1;
+        	
+        					for( var j=0; j < trs.length; j++ ) {
+        						var tr = trs[j];
+        						if( j > 0 ) {
+        							inputs = tr.select('input');
+        	
+        							for( i in inputs ) {
+        								if( inputs[i].checked == true ) {
+        									error = 0;
+        								}
+        							}
+        	
+        							if( error == 1 ) {
+        								return false;
+        							} else {
+        								error = 1;
+        							}
+        						}
+        					}
+        					return true;
+        				}]
+        		]
+        		);
+        	//]]>
+        	</script>
+        	*/ ?>
+        <?php else: ?>
+        	<p class="review-not-logged-in"><?php echo $this->__('Only registered users can write reviews. Please <a href="%s">log in</a> or <a href="%s">register</a>', $this->getLoginLink(), Mage::helper('customer')->getRegisterUrl()) ?></p>
+        <?php endif ?>
+    </div>
+</div>

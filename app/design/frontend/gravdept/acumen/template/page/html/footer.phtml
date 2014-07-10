@@ -1,0 +1,96 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+
+<div id="footer">
+	<div id="footer-bar" class="grid-block">
+		<div class="newsletter">
+			<?php echo $this->getChildHtml('newsletter') ?>
+		</div>
+		
+		<a class="top" href="#top" title="<?php echo $this->__('Return to top') ?>"><?php echo $this->__('Top') ?></a>		
+	</div>
+	
+	<div id="footer-opener" class="grid-block">
+    	<div class="social-icons-box">
+    	    <h2><?php echo $this->__('Follow Us') ?></h2>
+    	    
+    	    <ul class="social-icons-list">
+    	    	<li><a class="facebook" href="http://facebook.com" title="<?php echo $this->__('Follow on Facebook') ?>"><?php echo $this->__('Facebook') ?></a></li>
+    	    	<li><a class="twitter" href="http://twitter.com" title="<?php echo $this->__('Follow on Twitter') ?>"><?php echo $this->__('Twitter') ?></a></li>
+    	    	<li><a class="googleplus" href="http://plus.google.com" title="<?php echo $this->__('Follow on Google Plus') ?>"><?php echo $this->__('Google Plus') ?></a></li>
+    	    	<li><a class="pinterest" href="http://pinterest.com" title="<?php echo $this->__('Follow on Pinterest') ?>"><?php echo $this->__('Pinterest') ?></a></li>
+    	    </ul>
+    	</div>
+    	
+	    <div class="payment-icons-footer">
+	        <span><?php echo $this->__('Pay with') ?></span>
+    	    <?php echo $this->getChildHtml('gravdept_payment_icons'); ?>
+	    </div>
+	</div>
+
+	<div id="footer-closer" class="grid">
+		<div class="grid_8">
+			<ul class="footer-links">
+			    <li>
+					<h2><?php echo $this->__('Company') ?></h2>
+					<ul>
+						<li><a href="<?php echo $this->getUrl('about') ?>"><?php echo $this->__('About Us') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Blog') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Press') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Jobs') ?></a></li>
+					</ul>
+				</li>
+				
+				<li class="help">
+					<h2><?php echo $this->__('Support') ?></h2>
+					<ul>
+						<li><a href="<?php echo $this->getUrl('contact') ?>"><?php echo $this->__('Contact') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Help / FAQ') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Shipping Info') ?></a></li>
+						<li><a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Returns') ?></a></li>
+					</ul>
+				</li>
+				
+				<li class="retail">
+					<h2><?php echo $this->__('Location') ?></h2>
+					<p>
+						<?php echo $this->__('350 5th Avenue') ?><br>
+						<?php echo $this->__('New York, NY 10001') ?><br>
+						(800) 123&ndash;4567
+					</p>
+				</li>
+				
+				<li>
+				    <div class="tour-callout">You can put any content here.</div>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="grid_4">
+			<div class="switchers">
+				<?php echo $this->getChildHtml('store_switcher') ?>
+				<?php echo $this->getChildHtml('store_language') ?>
+				<?php echo $this->getChildHtml('store_currency') ?>
+			</div>
+			
+			<div class="legal">
+				<p class="copyright">&copy; <?php echo date("Y") ?> <?php echo $this->getCopyright() ?></p>
+			
+				<p class="terms">
+					<a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Terms Of Use') ?></a>
+					<a href="<?php echo $this->getUrl('#') ?>"><?php echo $this->__('Privacy Policy') ?></a>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

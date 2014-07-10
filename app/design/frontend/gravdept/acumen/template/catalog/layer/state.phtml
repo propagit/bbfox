@@ -1,0 +1,51 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+<?php 
+/**
+ * Category layered navigation state
+ * 
+ * @see Mage_Catalog_Block_Layer_State
+ */
+?>
+
+<?php $_filters = $this->getActiveFilters() ?>
+
+<?php if(!empty($_filters)): ?>
+    <div class="currently">
+        <h3><?php echo $this->__('Showing Only') ?></h3>
+        
+        <ol>
+            <?php foreach ($_filters as $_filter): ?>
+                <li>
+                    <a href="<?php echo $_filter->getRemoveUrl() ?>">
+                        <span class="label"><?php echo $this->__($_filter->getName()) ?>:</span> <span class="value"><?php echo $this->stripTags($_filter->getLabel()) ?></span>
+                    </a>
+                    
+                    <?php /* GravDept, hide overly complicated Magento cruft */ ?>
+                    <?php /*
+                    <?php $clearLinkUrl = $_filter->getClearLinkUrl(); ?>
+                    
+                    <?php if ($clearLinkUrl): ?>
+                        <a  class="btn-previous" href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Previous') ?>"><?php echo $this->__('Previous') ?></a>
+                        <a  class="btn-remove" title="<?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>" href="<?php echo $clearLinkUrl ?>"><?php echo $this->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></a>
+                    <?php else: ?>
+                        <a  class="btn-remove" href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>"><?php echo $this->__('Remove This Item') ?></a>
+                    <?php endif; ?>
+                    */ ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+        
+        <a class="show-all button button-micro button-subtle" href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Show All Items') ?></a>
+    </div>
+<?php endif; ?>

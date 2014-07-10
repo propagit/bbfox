@@ -1,0 +1,31 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.2.5
+ */
+?>
+
+<?php $_product = $this->getProduct(); ?>
+<?php $_options = Mage::helper('core')->decorateArray($this->getOptions()); ?>
+
+<?php if ($_product->isSaleable()):?>
+	<?php if (count($_options)): ?>
+		<dl class="bundle-options">
+			<?php foreach ($_options as $_option): ?>
+				<?php if (!$_option->getSelections()): ?>
+					<?php continue; ?>
+				<?php endif; ?>
+				
+				<?php echo $this->getOptionHtml($_option) ?>
+			<?php endforeach; ?>
+		</dl>
+	<?php else: ?>
+		<p><?php echo $this->__('No options of this product are available.') ?></p>
+	<?php endif; ?>
+<?php endif; ?>

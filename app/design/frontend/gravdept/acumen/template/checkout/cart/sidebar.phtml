@@ -1,0 +1,66 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.3
+ */
+?>
+<?php
+/**
+ * Shoping cart sidebar
+ *
+ * @see Mage_Checkout_Block_Cart_Sidebar
+ */
+?>
+
+<?php if ($this->getIsNeedToDisplaySideBar()):?>
+    <?php $_cartQty = $this->getSummaryCount() ?>
+    <?php $_items = $this->getRecentItems() /* set in MageAdmin, can manually override here */ ?>
+    
+    <?php if ($_cartQty>0): ?>
+        <div class="summary">
+        	<p class="count">
+        		<?php echo $_cartQty; ?>
+        		<?php echo ($_cartQty==1) ? $this->__('item') : $this->__('items'); ?>
+        	</p>
+        	
+        	<p class="subtotal">
+        	    <?php if ($this->canApplyMsrp()): ?>
+        	        <span class="map-cart-sidebar-total"><?php echo $this->__('ORDER TOTAL WILL BE DISPLAYED BEFORE YOU SUBMIT THE ORDER'); ?></span>
+        	    <?php else: ?>
+        	        <span class="label"><?php echo $this->__('Subtotal:') ?></span>
+        	        <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+        	        
+        	        <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+        	            <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+        	        <?php endif; ?>
+        	    <?php endif; ?>
+        	</p>
+        </div>
+    
+        <ol id="mini-cart-list">
+        	<?php foreach($_items as $_item): ?>
+        		<?php echo $this->getItemHtml($_item) ?>
+        	<?php endforeach; ?>
+        </ol>
+        
+        <div class="actions">
+        	<?php if ( count($_items) >= 5 ): ?>
+        		<p class="last-added"><?php echo $this->__('Showing the last 5 items added. View your cart to see everything.') ?></p>
+        	<?php endif; ?>
+        	
+        	<a class="button button-subtle" href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('View Cart') ?></a>
+        	
+        	<?php if($this->isPossibleOnepageCheckout()): ?>
+        	    <a class="button" href="<?php echo $this->getCheckoutUrl() ?>"><?php echo $this->__('Checkout') ?></a>
+        	<?php endif ?>
+        </div>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('Your cart is empty.') ?></p>
+    <?php endif ?>
+<?php endif; ?>

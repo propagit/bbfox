@@ -1,0 +1,36 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.3
+ */
+?>
+
+<?php if ($this->getMethod()->getMailingAddress() || $this->getMethod()->getPayableTo()): ?>
+	<ul class="form-list" id="payment_form_<?php echo $this->getMethodCode() ?>" style="display:none;">
+		<?php if ($this->getMethod()->getPayableTo()): ?>
+			<li>
+				<label><?php echo $this->__('Make check payable to') ?></label>
+				
+				<div class="input-box">
+    				<?php echo $this->escapeHtml($this->getMethod()->getPayableTo()) ?>
+    			</div>
+			</li>
+		<?php endif; ?>
+		
+		<?php if ($this->getMethod()->getMailingAddress()): ?>
+			<li>
+				<label><?php echo Mage::helper('payment')->__('Mail check to') ?></label>
+				
+				<div class="input-box">
+				    <?php echo nl2br($this->escapeHtml($this->getMethod()->getMailingAddress())) ?>
+				</div>
+			</li>
+		<?php endif; ?>
+	</ul>
+<?php endif; ?>

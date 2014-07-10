@@ -1,0 +1,50 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<div id="header">
+	<div id="logo">
+		<?php if ($this->getIsHomePage()):?>
+			<h1><a href="<?php echo $this->getUrl(); ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+		<?php else: ?>
+			<a href="<?php echo $this->getUrl(); ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+		<?php endif; ?>
+	</div>
+	
+	<div id="header-bar">
+		<?php echo $this->getChildHtml('topMenu') ?>
+		<?php echo $this->getChildHtml('topSearch') ?>
+	</div>
+	
+	<div id="account">
+		<div id="mini-cart">
+			<?php echo $this->getChildHtml('topCart') ?>
+			<div class="menu">
+				<div class="liner">
+					<?php echo $this->getChildHtml('topCartContents') ?>
+				</div>
+			</div>
+		</div>
+		
+		<div id="account-links">
+			<?php echo $this->getChildHtml('topLinks') ?>
+		</div>
+		
+		<?php
+		// GravDept:
+		// Hide welcome message.
+		?>
+		<?php /*<p class="welcome-msg"><?php echo $this->getChildHtml('welcome'); ?></p>*/ ?>
+		
+		<?php echo $this->getAdditionalHtml() ?>
+	</div>
+</div>

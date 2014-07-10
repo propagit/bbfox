@@ -1,0 +1,46 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+
+<!DOCTYPE html>
+<?php echo $this->getChildHtml('gravdept_html'); ?>
+
+<head>
+<?php echo $this->getChildHtml('head'); ?>
+</head>
+
+<body class="page-print <?php echo $this->getBodyClass() ? $this->getBodyClass() : ''; ?>">
+	
+	<table id="print-header-table">
+		<tr>
+			<td><h1><img src="<?php echo $this->getPrintLogoUrl() ? $this->getPrintLogoUrl() : $this->getSkinUrl('images/logo_print.gif'); ?>" alt="<?php echo $this->getDefaultTitle(); ?>" /></h1></td>
+			
+			<?php if ($this->getPrintLogoText()): ?>
+				<td class="a-right"><?php echo nl2br($this->escapeHtml($this->getPrintLogoText())); ?></td>
+			<?php endif;?>
+		</tr>
+	</table>
+	
+	<?php echo $this->getChildHtml('content'); ?>
+	
+	<button class="no-print" onclick="window.close();"><?php echo $this->__('Close Window'); ?></button>
+	
+	<?php echo $this->getAbsoluteFooter(); ?>
+	
+</body>
+</html>

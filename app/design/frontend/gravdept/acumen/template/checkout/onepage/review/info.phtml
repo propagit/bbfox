@@ -1,0 +1,82 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<table id="checkout-review-table" class="data-table">
+	<?php if ($this->helper('tax')->displayCartBothPrices()): $colspan = $rowspan = 2; else: $colspan = $rowspan = 1; endif; ?>
+	
+	<?php /*
+	<col />
+	<col width="1" />
+	<col width="1" />
+	<col width="1" />
+	<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+		<col width="1" />
+		<col width="1" />
+	<?php endif; ?>
+	*/ ?>
+	
+	<thead>
+		<tr>
+			<th class="width-full" rowspan="<?php echo $rowspan ?>"><?php echo $this->__('Product') ?></th>
+			<th colspan="<?php echo $colspan ?>" class="a-right"><?php echo $this->__('Price') ?></th>
+			<th rowspan="<?php echo $rowspan ?>" class="a-right"><abbr title="<?php echo $this->__('Quantity') ?>"><?php echo $this->__('Qty.') ?></abbr></th>
+			<th colspan="<?php echo $colspan ?>" class="a-right"><?php echo $this->__('Subtotal') ?></th>
+		</tr>
+		
+		<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+			<tr>
+				<th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+				<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+				<th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+				<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+			</tr>
+		<?php endif; ?>
+	</thead>
+	
+	<?php echo $this->getChildHtml('totals'); ?>
+	
+	<tbody>
+		<?php foreach($this->getItems() as $_item): ?>
+			<?php echo $this->getItemHtml($_item)?>
+		<?php endforeach ?>
+	</tbody>
+</table>
+
+<?php echo $this->getChildHtml('items_after'); ?>
+
+<script type="text/javascript">
+	//<![CDATA[
+	truncateOptions();
+	//]]>
+</script>
+
+<div id="checkout-review-submit">
+	<?php echo $this->getChildHtml('agreements') ?>
+	
+	<div class="buttons-set" id="review-buttons-container">
+		<?php /* GravDept, hide this, disrupts checkout flow */ ?>
+		<?php /*
+		<p class="f-left"><?php echo $this->__('Forgot an Item?') ?> <a href="<?php echo $this->getUrl('checkout/cart') ?>"><?php echo $this->__('Edit Your Cart') ?></a></p>
+		*/ ?>
+		
+		<?php echo $this->getChildHtml('button') ?>
+		
+		<span class="please-wait" id="review-please-wait" style="display:none;"><?php echo $this->__('Sending your order...') ?></span>
+	</div>
+	
+	<script type="text/javascript">
+		//<![CDATA[
+		review = new Review('<?php echo $this->getUrl('checkout/onepage/saveOrder', array('form_key' => Mage::getSingleton('core/session')->getFormKey())) ?>', '<?php echo $this->getUrl('checkout/onepage/success') ?>', $('checkout-agreements'));
+		//]]>
+	</script>
+</div>

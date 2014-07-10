@@ -1,0 +1,27 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php /* @see Mage_Payment_Block_Info */ ?>
+
+<h4><?php echo $this->escapeHtml($this->getMethod()->getTitle()); ?></h4>
+
+<?php if ($_specificInfo = $this->getSpecificInformation()): ?>
+	<dl class="order-payment-specifics">
+		<?php foreach ($_specificInfo as $_label => $_value): ?>
+			<dt><?php echo $this->escapeHtml($_label); ?>:</dt>
+			<dd><?php echo nl2br(implode($this->getValueAsArray($_value, true), "\n")); ?></dd>
+		<?php endforeach; ?>
+	</dl>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml(); ?>

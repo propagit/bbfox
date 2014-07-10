@@ -1,0 +1,68 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php if($this->getProductData()->getId()): ?>
+
+	<div class="grid-block">
+		<h1><?php echo $this->__('Review Details') ?></h1>
+	</div>
+	
+	<div id="product-review-view" class="grid">
+
+		<div class="grid_3">
+			<a class="product-image" href="<?php echo $this->getProductData()->getProductUrl() ?>"><img src="<?php echo $this->helper('catalog/image')->init($this->getProductData(), 'small_image')->resize(200, 200); ?>" alt="<?php echo $this->escapeHtml($this->getProductData()->getName()) ?>" /></a>
+			
+			<?php if( $this->getRating() && $this->getRating()->getSize()): ?>
+				 <p class="label"><?php echo $this->__('Average Customer Rating') ?>:</p>
+				 <?php echo $this->getReviewsSummaryHtml($this->getProductData()) ?>
+			<?php endif; ?>
+			
+			<div><a class="button" href="<?php echo $this->getBackUrl() ?>"><?php echo $this->__('Back to Product Reviews') ?></a></div>
+		</div>
+		
+		<div class="grid_6">
+			<h2 class="product-name"><?php echo $this->escapeHtml($this->getProductData()->getName()) ?></h2>
+			
+			<p class="written">
+				<?php echo $this->__('Written on') ?>x
+				<?php echo $this->dateFormat($this->getReviewData()->getCreatedAt(), 'long') ?>
+			</p>
+			
+			<div class="review-body">
+				<?php echo nl2br($this->escapeHtml($this->getReviewData()->getDetail())) ?>
+			</div>
+		</div>
+		
+		<div class="grid_3">
+			<?php if( $this->getRating() && $this->getRating()->getSize()): ?>
+				<h3><?php echo $this->__('Product Rating:') ?></h3>
+				
+				<table class="ratings-table">
+					<?php foreach ($this->getRating() as $_rating): ?>
+						<?php if($_rating->getPercent()): ?>
+							<tr>
+								<th><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
+								<td>
+									<div class="rating-box">
+										<div class="rating" style="width:<?php echo ceil($_rating->getPercent()) ?>%;"></div>
+									</div>
+								</td>
+							</tr>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</table>
+			<?php endif; ?>
+		</div>
+		
+	</div>
+<?php endif; ?>

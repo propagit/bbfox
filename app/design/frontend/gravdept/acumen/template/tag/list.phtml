@@ -1,0 +1,66 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<div id="tags">
+    <h2><?php echo $this->__('Tags'); ?></h2>
+    
+    <div class="grid">
+    	<div class="grid_4 alpha">
+    		<form id="add-tag-form" class="stack-form" action="<?php echo $this->getFormAction(); ?>" method="get">
+    			<ul class="form-list">
+    				<li>
+    					<label for="productTagName" class="required"><em>*</em><?php echo $this->__('Add Tags'); ?></label>
+    					
+    					<div class="input-box">
+        					<input type="text" class="input-text required-entry" name="productTagName" id="productTagName" title="<?php echo $this->__('Add Tags'); ?>" />
+    				    </div>
+    				</li>
+    			</ul>
+    			
+    			<div class="buttons-set">
+        			<button type="submit" class="button" onclick="submitTagForm()"><?php echo $this->__('Add Tags'); ?></button>
+    			</div>
+    		</form>
+    		
+    		<p class="hint"><?php echo $this->__('Separate tags with spaces. Wrap multi-word tags in single quotes. Example: \'New York\' Manhattan'); ?></p>
+    	</div>
+    	
+    	<div class="grid_3 omega">
+    		<?php echo $this->getChildHtml('list_before'); ?>
+    		
+    		<?php if ($this->getCount()): ?>
+    			<ul class="product-tags">
+    				<?php foreach ($this->getTags() as $_tag): ?>
+    					<li>
+    						<a href="<?php echo $_tag->getTaggedProductsUrl(); ?>">
+    							<span class="count"><?php echo $_tag->getPopularity(); ?></span>
+    							<span class="tag"><?php echo $this->escapeHtml($_tag->getName()); ?></span>
+    						</a>
+    					</li>
+    				<?php endforeach; ?>
+    			</ul>
+    		<?php endif; ?>
+    	</div>
+    </div>
+    
+    <script type="text/javascript">
+    	//<![CDATA[
+    		var addTagFormJs = new VarienForm('add-tag-form');
+    		function submitTagForm(){
+    			if(addTagFormJs.validator.validate()) {
+    				addTagFormJs.form.submit();
+    			}
+    		}
+    	//]]>
+    </script>
+</div>

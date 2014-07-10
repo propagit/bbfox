@@ -1,0 +1,20 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<?php $_links = $this->getLinks(); ?>
+
+<ul class="dashboard-links">
+	<?php foreach ($_links as $_link): ?>
+		<li class="<?php echo ($this->isActive($_link) ? 'current' : '') ?>"><a href="<?php echo $_link->getUrl() ?>"><?php echo $_link->getLabel() ?></a></li>
+	<?php endforeach; ?>
+</ul>

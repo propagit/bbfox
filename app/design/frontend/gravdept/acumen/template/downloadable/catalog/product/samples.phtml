@@ -1,0 +1,39 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+
+<?php
+/**
+ * Downloadable product links
+ *
+ * @see Mage_Downloadable_Block_Catalog_Product_Samples
+ */
+?>
+
+<?php if ($this->hasSamples()): ?>
+    <?php /* Magento: original */ ?>
+    <?php /*<dl class="item-options">*/ ?>
+    
+    <?php /*
+    GravDept
+    Custom class. Should not reuse "item-options" for different content role despite similar visual output.
+    */ ?>
+    <dl class="downloadable-samples">
+        <dt><?php echo $this->getSamplesTitle() ?></dt>
+        <?php $_samples = $this->getSamples() ?>
+        <?php foreach ($_samples as $_sample): ?>
+            <dd>
+                <a href="<?php echo $this->getSampleUrl($_sample) ?>" <?php echo $this->getIsOpenInNewWindow()?'onclick="this.target=\'_blank\'"':''; ?>><?php echo $this->escapeHtml($_sample->getTitle()); ?></a>
+            </dd>
+        <?php endforeach; ?>
+    </dl>
+<?php endif; ?>

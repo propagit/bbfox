@@ -1,0 +1,42 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @see Mage_Catalog_Block_Layer_Filter
+ */
+?>
+
+<ol>
+    <?php foreach ($this->getItems() as $_item): ?>
+        <?php
+        // GravDept: custom function to enable basic filter styling by type
+        $gravdept_filterClass = "filter-" . strtolower( preg_replace("/[^a-zA-Z0-9]/", "", $_item->getName()) ) . "-" . strtolower( preg_replace("/[^a-zA-Z0-9]/", "", $_item->getLabel()) );
+        ?>
+        <li class="<?php echo $gravdept_filterClass; ?>">
+            <?php if ($_item->getCount() > 0): ?>
+                <a href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+                    <?php if ($this->shouldDisplayProductCount()): ?>
+                        <span class="count"><?php echo $_item->getCount() ?></span>
+                    <?php endif; ?>
+                    
+                    <?php echo $_item->getLabel() ?>
+                    <?php /*echo $_item->getName()*/ ?>
+                </a>
+            <?php else: ?>
+                <?php echo $_item->getLabel() ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

@@ -1,0 +1,56 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.6
+ */
+?>
+
+<!DOCTYPE html>
+<?php echo $this->getChildHtml('gravdept_html') ?>
+
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+
+<body class="<?php echo $this->getBodyClass() ? $this->getBodyClass() : ''; ?>">
+	<?php echo $this->getChildHtml('after_body_start') ?>
+	<?php echo $this->getChildHtml('global_notices') ?>
+	
+	<div id="wrapper">
+		<div id="container">
+			<?php echo $this->getChildHtml('header') ?>
+		
+			<div id="matter" class="matter">
+				<?php echo $this->getChildHtml('breadcrumbs') ?>
+				
+				<div class="grid">
+					<div class="grid_9">
+						<?php echo $this->getChildHtml('global_messages') ?>
+						<?php echo $this->getChildHtml('content') ?>
+					</div>
+					
+					<div class="grid_3">
+						<?php echo $this->getChildHtml('right') ?>
+					</div>
+				</div>
+				
+				<?php if ( $this->getChildHtml('snippet_cms_page_bottom') ): ?>
+				    <div class="snippet snippet-cms-page-bottom"><?php echo $this->getChildHtml('snippet_cms_page_bottom') ?></div>
+				<?php endif; ?>
+			</div>
+		
+			<?php echo $this->getChildHtml('footer') ?>
+		</div>
+	</div>
+
+	<?php echo $this->getChildHtml('global_cookie_notice') ?>	
+	<?php echo $this->getChildHtml('before_body_end') ?>
+	<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

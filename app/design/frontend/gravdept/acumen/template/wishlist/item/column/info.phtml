@@ -1,0 +1,86 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php
+/* @var Mage_Wishlist_Model_Item $item */
+?>
+
+<?php
+$item = $this->getItem();
+$product = $item->getProduct();
+
+// GravDept:
+// Moved from: /wishlist/item/column/cart.phtml
+$options = $this->getChild('customer.wishlist.item.options')->setItem($item)->getConfiguredOptions();
+?>
+
+<div class="wishlist-item-contents">
+    <?php
+    // GravDept:
+    // Moved from: /wishlist/item/column/image.phtml
+    ?>
+    <a class="product-image" href="<?php echo $this->getProductUrl($item) ?>" title="<?php echo $this->escapeHtml($product->getName()); ?>">
+        <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(130, 130); ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+    </a>
+    
+    <a class="product-name" href="<?php echo $this->getProductUrl($item); ?>"><?php echo $this->escapeHtml($product->getName()); ?></a>
+    
+    <div class="description std">
+        <?php echo $this->escapeHtml($this->stripTags($product->getShortDescription())); ?>
+    </div>
+    
+    <?php
+    // GravDept
+    //
+    // Normally, Magento renders child templates when explicitly called via:
+    // $this->getChildHtml('block.name')
+    //
+    // Then all child templates in a block-template are rendered. Before/after parameters control sorting.
+    //
+    // This odd code is not the normal Magento way.
+    // It renders the XML-defined children, but ignores their configuration (explicit getChildHtml(), before/after position).
+    // You can move this code snippet's position around, but layout XML can't do its full job.
+    ?>
+    <?php if ($this->getSortedChildren()): ?>
+        <div class="item-manage">
+            <?php foreach ($this->getSortedChildren() as $childName): ?>
+                <?php echo $this->getChildHtml($childName, false); ?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    
+    <?php
+    // GravDept:
+    // Moved from: /wishlist/item/column/cart.phtml
+    // Also requires "$options" variable be copied (see above).
+    ?>
+    <?php echo $this->getPriceHtml($product, empty($options)); ?>
+    
+    <div class="wishlist-comment-box">
+        <label for="description[<?php echo $item->getWishlistItemId() ?>]"><?php echo $this->__('My notes') ?></label>
+        
+        <textarea class="input-text" name="description[<?php echo $item->getWishlistItemId() ?>]" id="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" onfocus="focusComment(this)" onblur="focusComment(this)" placeholder="<?php echo $this->__('Add comments here...') ?>">
+            <?php echo $this->escapeHtml($item->getDescription()); ?>
+        </textarea>
+    </div>
+    
+    <?php
+    // GravDept:
+    // Useful remainder from an older version.
+    // Not deprecated, but may be in the future.
+    ?>
+    <div class="date-added">
+    	<?php echo $this->__('Added') ?>
+    	<?php echo $this->getFormatedDate($item->getAddedAt()) ?>
+    </div>
+</div>

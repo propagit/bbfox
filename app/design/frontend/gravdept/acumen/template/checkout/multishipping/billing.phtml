@@ -1,0 +1,138 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.7
+*/
+?>
+
+<?php
+/**
+ * Multishipping checkout billing information
+ *
+ * @see Mage_Checkout_Block_Multishipping_Billing
+ */
+?>
+
+<div class="page-title">
+    <h1><?php echo $this->__('Billing Information'); ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
+
+<script src="<?php echo Mage::getBaseUrl('js'); ?>varien/payment.js"></script>
+
+<form id="multishipping-billing-form" class="stack-form" action="<?php echo $this->getPostActionUrl(); ?>" method="post">
+    <div class="grid">
+        <div class="block grid_3 alpha">
+            <div class="block-title">
+                <h2><?php echo $this->__('Billing Address'); ?></h2>
+            </div>
+            
+            <div class="block-content lined">
+                <div class="billing-address">
+                    <?php $_address=$this->getAddress(); ?>
+                    <address><?php echo $_address->format('html'); ?></address>
+                    <a class="button button-small button-subtle" href="<?php echo $this->getSelectAddressUrl(); ?>"><?php echo $this->__('Change'); ?></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="block grid_9 omega">
+            <div class="block-title">
+                <h2><?php echo $this->__('Payment Method'); ?></h2>
+            </div>
+            
+            <div class="block-content lined">
+                <?php /* GravDept: custom */ ?>
+                <div class="payment-icons-box">
+                    <h3><?php echo $this->__('Accepted payment methods:'); ?></h3>
+                    <?php echo $this->getChildHtml('gravdept_payment_icons'); ?>
+                </div>
+                
+                <dl class="billing-methods">
+                    <?php $_methods = $this->getMethods(); ?>
+                    <?php $_methodsCount = count($_methods); ?>
+                    
+                    <?php foreach ($_methods as $_method): $_code = $_method->getCode(); ?>
+                        <dt>
+                            <?php if ($_methodsCount > 1): ?>
+                                <input type="radio" id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" name="payment[method]" onclick="payment.switchMethod('<?php echo $_code ?>')"<?php if($this->getSelectedMethodCode()==$_code): ?> checked="checked"<?php endif; ?> class="radio" />
+                            <?php else: ?>
+                                <span class="no-display"><input type="radio" id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" name="payment[method]" checked="checked" class="radio" /></span>
+                            <?php endif; ?>
+                            
+                            <label for="p_method_<?php echo $_code; ?>"><?php echo $this->escapeHtml($_method->getTitle()); ?></label>
+                        </dt>
+                        
+                        <?php if($html = $this->getChildHtml('payment.method.'.$_code)) : ?>
+                            <dd><?php echo $html; ?></dd>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </dl>
+                
+                <div id="payment-tooltip" style="display:none;">
+                    <h3><?php echo $this->__('What is a Card Verification Number?'); ?></h3>
+                    <p><?php echo $this->__('The'); ?> <abbr title="<?php echo $this->__('Card Verification Number'); ?>"><?php echo $this->__('CVN'); ?></abbr> <?php echo $this->__('is a security feature to protect our customers from credit card fraud.'); ?></p>
+                    
+                    <ul>
+                        <li>
+                            <img src="<?php echo $this->getSkinUrl('img/icon/payment-cvn-three.png'); ?>" alt="" />
+                            <h4><?php echo $this->__('Visa, Mastercard &amp; Discover'); ?></h4>
+                            <p><?php echo $this->__('Three-digit security code on back of card'); ?></p>
+                        </li>
+                        
+                        <li>
+                            <img src="<?php echo $this->getSkinUrl('img/icon/payment-cvn-four.png'); ?>" alt="" />
+                            <h4><?php echo $this->__('American Express'); ?></h4>
+                            <p><?php echo $this->__('Four-digit security code on front of card'); ?></p>
+                        </li>
+                    </ul>
+                    
+                    <button id="payment-tooltip-close" class="button button-small button-subtle" href="#"><?php echo $this->__('Hide'); ?></button>
+                </div>
+                
+                <?php echo $this->getChildHtml('checkout_billing_items'); ?>
+            </div>
+        </div>
+    </div>
+    
+    <div class="buttons-set multiship-actions">
+        <a class="button button-subtle" href="<?php echo $this->getBackUrl(); ?>"><?php echo $this->__('Go Back'); ?></a>
+        <button type="submit" id="payment-continue" class="button button-large"><?php echo $this->__('Continue'); ?></button>
+    </div>
+</form>
+
+<script>
+    var payment = new paymentForm('multishipping-billing-form');
+
+    function toggleToolTip (event){
+        if ($('payment-tooltip')){
+            // GravDept:
+            // Don't set position in JS.
+            /*
+            $('payment-tooltip').setStyle({
+                top: (Event.pointerY(event)-510)+'px',
+                left: (Event.pointerX(event)-800)+'px'
+            })
+            */
+
+            $('payment-tooltip').toggle();
+        }
+
+        Event.stop(event);
+    }
+
+    if ($('payment-tooltip-close')){
+        Event.observe($('payment-tooltip-close'), 'click', toggleToolTip);
+    }
+
+    $$('.cvv-what-is-this').each(function(element){
+        Event.observe(element, 'click', toggleToolTip);
+    });
+</script>

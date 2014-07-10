@@ -1,0 +1,81 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<div class="grid-block">
+	<h1><?php echo $this->__('Contact Us') ?></h1>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+
+<div class="grid">
+	<div class="grid_7 suffix_1">
+		<form id="contact-form" class="scaffold-form" action="<?php echo $this->getFormAction(); ?>" method="post">
+			<h2><?php echo $this->__('Send Us A Message') ?></h2>
+			
+			<ul class="form-list">
+				<li>
+					<label for="name" class="required"><em>*</em><?php echo $this->__('Name') ?></label>
+					
+					<div class="input-box">
+					    <input type="text" id="name" name="name" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" title="<?php echo $this->__('Name') ?>" />
+					</div>
+				</li>
+				
+				<li>
+					<label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?></label>
+					
+					<div class="input-box">
+					    <input type="text" id="email" name="email" value="<?php echo $this->escapeHtml($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" title="<?php echo $this->__('Email') ?>" />
+					</div>
+				</li>
+				
+				<li>
+					<label for="telephone"><?php echo $this->__('Phone') ?></label>
+					
+					<div class="input-box">
+					    <input type="tel" id="telephone" name="telephone" class="input-text" title="<?php echo $this->__('Phone') ?>" />
+					</div>
+				</li>
+				
+				<li>
+					<label for="comment" class="required"><em>*</em><?php echo $this->__('Message') ?></label>
+					
+					<div class="input-box">
+					    <textarea id="comment" name="comment" class="input-text required-entry" rows="5" title="<?php echo $this->__('Message') ?>"></textarea>
+					</div>
+				</li>
+			</ul>
+			
+			<input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+			
+			<div class="buttons-set">
+			    <button type="submit" class="button"><?php echo $this->__('Send Message') ?></button>
+			</div>
+		</form>
+		
+		<script type="text/javascript">
+			//<![CDATA[
+				var contactForm = new VarienForm('contact-form', true);
+			//]]>
+		</script>
+	</div>
+
+	<div class="grid_4">
+		<h2><?php echo $this->__('Email / Phone') ?></h2>
+		
+		<p><?php echo $this->__('If you have any questions, we\'d be happy to help. Please get in touch with us.') ?></p>
+		<p>
+			<a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_support/email'); ?>"><?php echo Mage::getStoreConfig('trans_email/ident_support/email'); ?></a><br />
+			<?php echo Mage::getStoreConfig('general/store_information/phone'); ?>
+		</p>
+	</div>
+</div>

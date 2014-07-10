@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+
+<!--
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.6
+*/
+-->
+
+<layout version="0.1.0">
+
+<!--
+Default layout, loads most of the pages
+-->
+
+	<default translate="label" module="page">
+		<label>All Pages</label>
+		<block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
+		
+		<!-- HTML -->
+		
+			<!-- GravDept, insert custom html tag -->
+			<!-- includes IE conditional selector -->
+			<!-- includes .no-js class -->
+			<block type="page/html" name="gravdept.html" as="gravdept_html" template="gravdept/page/html/html.phtml" />
+		
+		<!-- Head -->
+		
+			<block type="page/html_head" name="head" as="head">
+				
+			<!-- Magento JS -->
+				
+				<action method="addJs"><script>prototype/prototype.js</script></action>
+				<action method="addJs"><script>lib/ccard.js</script></action>
+				<action method="addJs"><script>prototype/validation.js</script></action>
+				<!--<action method="addJs"><script>scriptaculous/builder.js</script></action>-->   <!-- GravDept, not required -->
+				<action method="addJs"><script>scriptaculous/effects.js</script></action>          <!-- GravDept, required for form validation and search autocomplete -->
+				<!--<action method="addJs"><script>scriptaculous/dragdrop.js</script></action>-->  <!-- GravDept, not required -->
+				<action method="addJs"><script>scriptaculous/controls.js</script></action>         <!-- GravDept, required for search autocomplete -->
+				<!--<action method="addJs"><script>scriptaculous/slider.js</script></action>-->    <!-- GravDept, not required -->
+				<action method="addJs"><script>varien/js.js</script></action>
+				<action method="addJs"><script>varien/form.js</script></action>
+				<!--<action method="addJs"><script>varien/menu.js</script></action>-->     <!-- GravDept, this behavior is all CSS now. Also see "/app/code/local" mods -->
+				<action method="addJs"><script>mage/translate.js</script></action>  <!-- GravDept: required for inline translation. See: "MageAdmin > Config > Advanced > Developer" and "/template/page/html/head.phtml" -->
+				<action method="addJs"><script>mage/cookies.js</script></action>
+				<!--<action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>-->  <!-- GravDept, not actually required -->
+				<!--<action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/><if>lt IE 7</if></action>-->     <!-- GravDept, not actually required -->
+				
+				<block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml" />
+				
+			<!-- Magento CSS -->
+			
+				<!-- GravDept, ignore all Magento CSS -->
+				<!--<action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>-->
+				<!--<action method="addCss"><stylesheet>css/styles.css</stylesheet></action>-->
+				<!--<action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>-->
+				<!--<action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>-->
+				
+			<!-- GravDept JS -->
+			
+				<!-- GravDept, see "/template/page/html/head.phtml" and CMS static blocks and 'before_body_end' block -->
+				
+			<!-- GravDept CSS -->
+				
+				<!--<action method="addCss"><stylesheet>css/base.css</stylesheet></action>-->  <!-- GravDept, uncompressed (human readable) -->
+				<action method="addCss"><stylesheet>css/base.min.css</stylesheet></action>  <!-- GravDept, minified (for performance) -->
+				<action method="addCss"><stylesheet>css/override.css</stylesheet></action>  <!-- GravDept, custom style overrides -->
+				
+				<!-- Moved IE fixes to base.css -->
+				<!--<action method="addItem"><type>skin_css</type><name>css/ie_all.css</name><params/><if>IE</if></action>-->            <!-- GravDept, IE fixes (all) -->
+				<!--<action method="addItem"><type>skin_css</type><name>css/ie_lte-ie7.css</name><params/><if>lte IE 7</if></action>-->  <!-- GravDept, IE7 fixes only -->
+				<!--<action method="addItem"><type>skin_css</type><name>css/ie_ie6.css</name><params/><if>IE 6</if></action>-->          <!-- GravDept, IE6 not supported. File exists though -->
+				
+			</block>
+		
+		<!-- Header -->
+			
+			<block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
+				<label>Page Top</label>
+			</block>
+			
+			<block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
+
+			<block type="page/html_header" name="header" as="header">
+				<block type="core/text_list" name="top.menu" as="topMenu" translate="label">
+					<label>Navigation Bar</label>
+					<block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>
+				</block>
+				
+				<block type="page/template_links" name="top.links" as="topLinks"/>
+				
+				<!-- GravDept, the mini-cart -->
+				<block type="page/template_links" name="top.cart" as="topCart"/>
+				
+				<block type="page/html_wrapper" name="top.container" as="topContainer" translate="label">
+					<label>Page Header</label>
+					<action method="setElementClass"><value>top-container</value></action>
+				</block>
+
+				<block type="page/html_welcome" name="welcome" as="welcome"/>
+			</block>
+			
+			<!-- GravDept -->
+			<block type="core/text_list" name="gravdept_title_banner" as="gravdept_titleBanner"/>
+			
+			<block type="page/html_breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+			<block type="core/messages" name="global_messages" as="global_messages"/>
+			<block type="core/messages" name="messages" as="messages"/>
+			
+		<!-- Columns -->
+
+			<block type="core/text_list" name="left" as="left" translate="label">
+				<label>Left Column</label>
+			</block>
+
+			<block type="core/text_list" name="content" as="content" translate="label">
+				<label>Main Content Area</label>
+			</block>
+
+			<block type="core/text_list" name="right" as="right" translate="label">
+				<label>Right Column</label>
+			</block>
+			
+		<!-- Footer -->
+
+			<block type="page/html_footer" name="footer" as="footer" template="page/html/footer.phtml">
+				<block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
+					<label>Page Footer</label>
+					<action method="setElementClass"><value>bottom-container</value></action>
+				</block>
+				
+				<block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/>
+				<block type="page/switch" name="store_switcher" as="store_switcher" template="page/switch/stores.phtml"/>
+				<!-- GravDept, moved from directory.xml -->
+				<block type="directory/currency" name="currency" as="store_currency" template="directory/currency.phtml"/>
+				
+				<!-- GravDept, hide -->
+				<!--<block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml"/>-->
+			</block>
+
+			<block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
+				<label>Page Bottom</label>
+
+				<block type="page/html_cookieNotice" name="global_cookie_notice" as ="global_cookie_notice" template="page/html/cookienotice.phtml" before="-" />
+				
+				<!-- GravDept, load jQuery -->
+				<block type="core/template" name="gravdept.jquery.load" before="-" template="gravdept/jquery/load.phtml" />
+				
+				<!-- GravDept, other jQuery libraries added after="gravdept.jquery.load" via XML -->
+				
+				<!-- GravDept, run jQuery -->
+				<block type="core/template" name="gravdept.jquery.run" after="gravdept.jquery.load" template="gravdept/jquery/run.phtml" />
+			</block>
+		</block>
+
+		<block type="core/profiler" output="toHtml" name="core_profiler"/>
+	</default>
+
+<!--
+Print page layout handle
+-->
+
+	<print translate="label" module="page">
+		<label>All Pages (Print Version)</label>
+		<!-- Mage_Page -->
+		<block type="page/html" name="root" output="toHtml" template="page/print.phtml">
+
+			<block type="page/html_head" name="head" as="head">
+			
+			<!-- Magento JS -->
+			
+				<action method="addJs"><script>prototype/prototype.js</script></action>
+				<!--<action method="addJs"><script>mage/translate.js</script></action>-->
+				<action method="addJs"><script>lib/ccard.js</script></action>
+				<action method="addJs"><script>prototype/validation.js</script></action>
+				<action method="addJs"><script>varien/js.js</script></action>
+				<!--<action method="addItem"><type>js</type><name>lib/ds-sleight.js</name><params/><if>lt IE 7</if></action>-->
+				<!--<action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/><if>lt IE 7</if></action>-->
+				
+			<!-- Magento CSS -->
+			
+				<!--<action method="addCss"><stylesheet>css/widgets.css</stylesheet></action>-->
+				<!--<action method="addCss"><stylesheet>css/styles.css</stylesheet></action>-->
+				<!--<action method="addItem"><type>skin_css</type><name>css/styles-ie.css</name><params/><if>lt IE 8</if></action>-->
+				<!--<action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>-->
+
+			<!-- GravDept CSS -->
+			
+				<!--<action method="addCss"><stylesheet>css/base.css</stylesheet></action>--> <!-- GravDept, uncompressed (human readable) -->
+				<action method="addCss"><stylesheet>css/base.min.css</stylesheet></action> <!-- GravDept, minified (for performance) -->
+				<action method="addCss"><stylesheet>css/print.css</stylesheet><params>media="print"</params></action>
+				<action method="addCss"><stylesheet>css/override.css</stylesheet></action>  <!-- GravDept, custom style overrides -->
+
+			</block>
+
+			<block type="core/text_list" name="content" as="content" translate="label">
+				<label>Main Content Area</label>
+			</block>
+
+		</block>
+	</print>
+
+<!--
+Base page layout handles
+-->
+
+	<page_empty translate="label">
+		<label>All Empty Layout Pages</label>
+		
+		<reference name="root">
+			<action method="setTemplate"><template>page/empty.phtml</template></action>
+			<!-- Mark root page block that template is applied -->
+			<action method="setIsHandle"><applied>1</applied></action>
+		</reference>
+	</page_empty>
+
+	<page_one_column translate="label">
+		<label>All One-Column Layout Pages</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+			<!-- Mark root page block that template is applied -->
+			<action method="setIsHandle"><applied>1</applied></action>
+		</reference>
+	</page_one_column>
+
+	<page_two_columns_left translate="label">
+		<label>All Two-Column Layout Pages (Left Column)</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+			<!-- Mark root page block that template is applied -->
+			<action method="setIsHandle"><applied>1</applied></action>
+		</reference>
+	</page_two_columns_left>
+
+	<page_two_columns_right translate="label">
+		<label>All Two-Column Layout Pages (Right Column)</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+			<!-- Mark root page block that template is applied -->
+			<action method="setIsHandle"><applied>1</applied></action>
+		</reference>
+	</page_two_columns_right>
+
+	<page_three_columns translate="label">
+		<label>All Three-Column Layout Pages</label>
+		<reference name="root">
+			<action method="setTemplate"><template>page/3columns.phtml</template></action>
+			<!-- Mark root page block that template is applied -->
+			<action method="setIsHandle"><applied>1</applied></action>
+		</reference>
+	</page_three_columns>
+
+</layout>

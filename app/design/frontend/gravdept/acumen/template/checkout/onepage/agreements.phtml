@@ -1,0 +1,43 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php
+/**
+ * @see Mage_Checkout_Block_Agreements
+ */
+?>
+
+<?php if (!$this->getAgreements()) return; ?>
+
+<h3><?php echo $this->__('Terms &amp; Conditions') ?></h3>
+
+<form id="checkout-agreements" action="" onsubmit="return false;">
+	<ol class="checkout-agreements">
+		<?php foreach ($this->getAgreements() as $_a): ?>
+			<li>
+				<div class="agreement-content"<?php /*echo ($_a->getContentHeight() ? ' style="height:' . $_a->getContentHeight() . '"' : '')*/ ?>>
+					<?php if ($_a->getIsHtml()): ?>
+						<?php echo $_a->getContent() ?>
+					<?php else: ?>
+						<?php echo nl2br($this->escapeHtml($_a->getContent())) ?>
+					<?php endif; ?>
+				</div>
+				
+				<div class="agree control">
+					<input type="checkbox" id="agreement-<?php echo $_a->getId()?>" class="checkbox" name="agreement[<?php echo $_a->getId()?>]" value="1" />
+					<label for="agreement-<?php echo $_a->getId()?>"><?php echo $_a->getIsHtml() ? $_a->getCheckboxText() : $this->escapeHtml($_a->getCheckboxText()) ?></label>
+				</div>
+			</li>
+		<?php endforeach; ?>
+	</ol>
+</form>

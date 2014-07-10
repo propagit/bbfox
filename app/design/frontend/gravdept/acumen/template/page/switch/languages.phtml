@@ -1,0 +1,34 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php
+/**
+ * Language switcher template
+ *
+ * @see Mage_Page_Block_Switch
+ */
+?>
+
+<?php if (count($this->getStores()) > 1): ?>
+    <div class="form-language switcher">
+        <label for="select-language"><?php echo $this->__('Language'); ?></label>
+        
+        <select id="select-language" onchange="window.location.href=this.value">
+            <?php foreach ($this->getStores() as $_lang): ?>
+                <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : ''; ?>
+
+                <option value="<?php echo $_lang->getCurrentUrl(); ?>"<?php echo $_selected; ?>><?php echo $this->escapeHtml($_lang->getName()); ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+<?php endif; ?>

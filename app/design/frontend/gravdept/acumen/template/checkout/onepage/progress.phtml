@@ -1,0 +1,48 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php /* @var $this Mage_Checkout_Block_Onepage_Progress */ ?>
+
+<div id="opc-progress" class="block opc-progress-block">
+    <div class="block-title">
+        <h2><?php echo $this->__('Progress'); ?></h2>
+    </div>
+
+    <div class="block-content">
+        <div class="opc-progress-steps">
+            <?php if ($this->getCheckout()->getStepData('billing', 'is_show')): ?>
+                <div id="billing-progress-opcheckout" class="opc-progress-step">
+                    <?php echo $this->getChildHtml('billing.progress'); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('shipping', 'is_show')): ?>
+                <div id="shipping-progress-opcheckout" class="opc-progress-step">
+                    <?php echo $this->getChildHtml('shipping.progress'); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('shipping_method', 'is_show')): ?>
+                <div id="shipping_method-progress-opcheckout" class="opc-progress-step">
+                    <?php echo $this->getChildHtml('shippingmethod.progress'); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($this->getCheckout()->getStepData('payment', 'is_show')): ?>
+                <div id="payment-progress-opcheckout" class="opc-progress-step">
+                    <?php echo $this->getChildHtml('payment.progress'); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>

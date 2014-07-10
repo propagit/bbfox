@@ -1,0 +1,74 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.7
+*/
+?>
+
+<?php
+/**
+ * Ship to multiple address template
+ *
+ * @see Mage_Checkout_Block_Multishipping_Addresses
+ */
+?>
+
+<div class="page-title">
+	<h1><?php echo $this->__('Select Addresses'); ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
+
+<form id="multiship-addresses-form" action="<?php echo $this->getPostActionUrl(); ?>" method="post">		
+	<button type="submit" data-action="add-new-customer-address" id="add-address" class="button button-small" onclick="$('add_new_address_flag').value=1">
+		<?php echo $this->__('Add New Address'); ?>
+	</button>
+	
+	<input type="hidden" name="continue" value="0" id="can_continue_flag" />
+	<input type="hidden" name="new_address" value="0" id="add_new_address_flag" />
+	
+	<h2><?php echo $this->__('Select a shipping destination for each item'); ?></h2>
+	
+	<table id="multiship-addresses-table" class="flex-table">
+		<thead>
+			<tr>
+				<th>&nbsp;</th>
+				<th class="width-full"><?php echo $this->__('Product'); ?></th>
+				<th><?php echo $this->__('Qty.'); ?></th>
+				<th><?php echo $this->__('Destination'); ?></th>
+			</tr>
+		</thead>
+		
+		<tfoot>
+			<tr>
+				<td colspan="4" class="a-right">
+					<button class="button button-small button-subtle" type="submit" onclick="$('can_continue_flag').value=0"><?php echo $this->__('Update'); ?></button>
+				</td>
+			</tr>
+		</tfoot>
+		
+		<tbody>
+			<?php foreach ($this->getItems() as $_index => $_item): ?>
+				<?php if ($_item->getQuoteItem()): ?>
+					<tr>
+						<td><a class="btn-remove" href="<?php echo $this->getItemDeleteUrl($_item); ?>" title="<?php echo $this->__('Remove Item'); ?>"><?php echo $this->__('Remove Item'); ?></a></td>
+						<td><?php echo $this->getItemHtml($_item->getQuoteItem())?></td>
+						<td><input type="text" name="ship[<?php echo $_index ?>][<?php echo $_item->getQuoteItemId(); ?>][qty]" class="input-text qty" value="<?php echo $this->escapeHtml($_item->getQty()); ?>" /></td>
+						<td><?php if ($_item->getProduct()->getIsVirtual()): echo $this->__('Shipping selection is not applicable'); else: echo $this->getAddressesHtmlSelect($_item, $_index); endif; ?></td>
+					</tr>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	
+	<div class="buttons-set multiship-actions">
+		<a class="button button-subtle" href="<?php echo $this->getBackUrl(); ?>"><?php echo $this->__('Go Back'); ?></a>
+		<button type="submit" data-action="checkout-continue-shipping" class="button button-large <?php if ($this->isContinueDisabled()):?> disabled<?php endif; ?>" onclick="$('can_continue_flag').value=1"<?php if ($this->isContinueDisabled()):?> disabled="disabled"<?php endif; ?>><?php echo $this->__('Continue'); ?></button>
+	</div>
+</form>

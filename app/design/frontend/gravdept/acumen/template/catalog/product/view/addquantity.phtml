@@ -1,0 +1,30 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+
+<?php $_product = $this->getProduct() ?>
+
+<?php if($_product->isSaleable()): ?>
+
+	<?php if(!$_product->isGrouped()): ?>
+		<div class="product-qty">
+    		<label for="qty" class="required"><em>*</em><?php echo $this->__('Quantity') ?></label>
+    		
+    		<?php /* Magento default. Bug: QTY defaults to zero. */ ?>
+    		<?php /*<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" class="input-text qty" />*/ ?>
+    		
+    		<?php /* GravDept, fixes QTY defaulting to zero */ ?>
+    		<input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getMinimalQty($_product)== null?1:$this->getMinimalQty($_product) ?>" class="input-text qty" title="<?php echo $this->__('Quantity') ?>" />
+		</div>
+	<?php endif; ?>
+
+<?php endif; ?>

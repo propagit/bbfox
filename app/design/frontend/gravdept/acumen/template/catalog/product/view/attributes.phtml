@@ -1,0 +1,42 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php
+/**
+ * Product additional attributes template
+ *
+ * @see Mage_Catalog_Block_Product_View_Attributes
+ */
+?>
+
+<?php
+$_helper = $this->helper('catalog/output');
+$_product = $this->getProduct();
+?>
+
+<?php if ($_additional = $this->getAdditionalData()): ?>
+	<h2><?php echo $this->__('Details'); ?></h2>
+	
+	<table class="data-table" id="product-attribute-specs-table">
+		<tbody>
+			<?php foreach ($_additional as $_data): ?>
+				<tr>
+					<th><?php echo $this->escapeHtml($this->__($_data['label'])); ?></th>
+					<td><?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']); ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+<?php else: ?>
+    <p><?php echo $this->__('No product details.') ?></p>
+<?php endif; ?>

@@ -1,0 +1,59 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<div id="cart-coupon-box" class="block">
+    <div class="block-title">
+        <h2><?php echo $this->__('Coupon'); ?></h2>
+    	<p><?php echo $this->__('Type a coupon code if you have one.'); ?></p>
+    </div>
+    
+    <div class="block-content lined">
+        <form id="coupon-form" class="stack-form" action="<?php echo $this->getUrl('checkout/cart/couponPost'); ?>" method="post">
+        	<input type="hidden" id="remove_coupon" name="remove" value="0" />
+        	
+        	<ul class="form-list">
+        		<li>
+        			<label for="coupon_code"><?php echo $this->__('Coupon Code'); ?></label>
+        			
+        			<div class="input-box">
+            			<input type="text" id="coupon_code" name="coupon_code" value="<?php echo $this->escapeHtml($this->getCouponCode()); ?>" class="input-text" />
+            		</div>
+        		</li>
+        	</ul>
+        	
+        	<div class="buttons-set">
+            	<button class="button" onclick="couponForm.submit(false)"><?php echo $this->__('Apply'); ?></button>
+            	
+            	<?php if (strlen($this->getCouponCode())): ?>
+            		<a class="button button-small button-subtle" href="#" onclick="couponForm.submit(true)"><?php echo $this->__('Remove Coupon'); ?></a>
+            	<?php endif;?>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+	//<![CDATA[
+	var couponForm = new VarienForm('coupon-form');
+	couponForm.submit = function (isRemove) {
+		if (isRemove) {
+			$('coupon_code').removeClassName('required-entry');
+			$('remove_coupon').value = "1";
+		} else {
+			$('coupon_code').addClassName('required-entry');
+			$('remove_coupon').value = "0";
+		}
+		return VarienForm.prototype.submit.bind(couponForm)();
+	}
+	//]]>
+</script>

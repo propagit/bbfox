@@ -1,0 +1,48 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php if ($this->getCheckout()->getStepData('shipping_method', 'complete')): ?>
+    <div class="opc-progress-step-title complete">
+        <?php echo $this->__('Shipping Method'); ?>
+        <a href="#shipping_method" class="button button-micro button-subtle" onclick="checkout.changeSection('opc-shipping_method'); return false;"><?php echo $this->__('Edit') ?></a>
+    </div>
+
+    <div class="opc-progress-step-content complete">
+        <?php if ($this->getShippingMethod()): ?>
+            <?php echo $this->getShippingDescription(); ?>
+
+            <?php $_excl = $this->getShippingPriceExclTax(); ?>
+            <?php $_incl = $this->getShippingPriceInclTax(); ?>
+            
+            <?php if ($this->helper('tax')->displayShippingPriceIncludingTax()): ?>
+                <?php echo $_incl; ?>
+            <?php else: ?>
+                <?php echo $_excl; ?>
+            <?php endif; ?>
+            
+            <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+                (<?php echo $this->__('Incl. Tax') ?> <?php echo $_incl; ?>)
+            <?php endif; ?>
+        <?php else: ?>
+            <?php echo $this->__('Shipping method hasn\'t been selected yet.'); ?>
+        <?php endif; ?>
+    </div>
+<?php else: ?>
+    <div class="opc-progress-step-title incomplete">
+        <?php echo $this->__('Shipping Method'); ?>
+    </div>
+
+    <div class="opc-progress-step-content incomplete">
+        <?php echo $this->__('Pending'); ?>
+    </div>
+<?php endif; ?>

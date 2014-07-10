@@ -1,0 +1,42 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+
+/* @var $this Mage_Core_Block_Template */
+/* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
+$catalogSearchHelper =  $this->helper('catalogsearch');
+?>
+
+<form id="search-form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+	<label for="search"><?php echo $this->__('Search') ?></label>
+	<input id="search" type="text" name="<?php echo $catalogSearchHelper->getQueryParamName() ?>" value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>" class="input-text" maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>" placeholder="<?php echo $this->__('Search') ?>" />
+	<button type="submit"><?php echo $this->__('Submit') ?></button>
+	
+	<?php
+	// requires prototype/prototype.js
+	// requires scriptaculous/effects.js
+	// requires scriptaculous/controls.js
+	?>
+	<div id="search_autocomplete" class="search-autocomplete"></div>
+	
+	<script type="text/javascript">
+		//<![CDATA[
+		
+		/* Magento original */
+		/*var searchForm = new Varien.searchForm('search-form', 'search', '<?php echo $this->__('Search') ?>');*/
+		
+		/* GravDept custom, replace JS with HTML5 placeholder */
+		var searchForm = new Varien.searchForm('search-form', 'search', '');
+		
+		searchForm.initAutocomplete('<?php echo $catalogSearchHelper->getSuggestUrl() ?>', 'search_autocomplete');
+		//]]>
+	</script>
+</form>

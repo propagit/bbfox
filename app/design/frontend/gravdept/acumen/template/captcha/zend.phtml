@@ -1,0 +1,41 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+<?php /* @var $this Mage_Core_Block_Captcha_Zend */ ?>
+<?php /* @var $captcha Mage_Core_Model_Captcha_Zend */ ?>
+
+<?php $captcha = $this->getCaptchaModel() ?>
+
+<li id="captcha-input-box-<?php echo $this->getFormId()?>">
+    <label for="captcha_<?php echo $this->getFormId() ?>" class="required"><em>*</em><?php echo $this->__('Type the characters')?></label>
+    <div class="input-box captcha">
+        <input name="<?php echo Mage_Captcha_Helper_Data::INPUT_NAME_FIELD_VALUE ?>[<?php echo $this->getFormId()?>]" type="text" class="input-text required-entry" id="captcha_<?php echo $this->getFormId() ?>" />
+    </div>
+
+    <div class="captcha-image" id="captcha-image-box-<?php echo $this->getFormId()?>">
+        <?php if ($captcha->isCaseSensitive()) :?>
+            <div class="captcha-note">
+                <?php echo $this->__('<strong>Attention</strong>: Captcha is case sensitive.') ?>
+            </div>
+        <?php endif; ?>
+        
+        <div><img id="<?php echo $this->getFormId() ?>" class="captcha-img" height="<?php echo $this->getImgHeight() ?>" src="<?php echo $captcha->getImgSrc() ?>"/></div>
+        
+        <a href="#" id="captcha-reload" class="captcha-reload" onclick="$('<?php echo $this->getFormId()?>').captcha.refresh(this); return false;"><?php echo $this->__('Reload captcha') ?></a>
+    </div>
+    
+    <script type="text/javascript">
+    //<![CDATA[
+        $('<?php echo $this->getFormId() ?>').captcha = new Captcha('<?php echo $this->getRefreshUrl() ?>', '<?php echo $this->getFormId() ?>');
+    //]]>
+    </script>
+</li>

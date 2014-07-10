@@ -1,0 +1,65 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.7
+ */
+?>
+
+<?php
+/**
+ * Note: This mark is a requirement of PayPal
+ * @see Mage_Paypal_Block_Standard_Form
+ */
+?>
+
+<?php
+// GravDept:
+// Hide obnoxious PayPal logos.
+?>
+<?php /*
+<img src="<?php echo $this->escapeHtml($this->getPaymentAcceptanceMarkSrc())?>" alt="<?php echo Mage::helper('paypal')->__('Acceptance Mark') ?>" class="v-middle" />
+*/ ?>
+
+<?php
+// GravDept:
+// Hacky way to determine PayPal method.
+// Magento doesn't make it easy to get method code without overriding multiple classes.
+// This only checks the specific phrase used by "Bill Me Later".
+// Could easily be incorrect if new PayPal methods become available/activated.
+// But BillMeLater/Express cover most use cases. Deal with it.
+//
+// See: @Mage_Paypal_Block_Standard_Form
+// See: @Mage_Paypal_Block_Bml_Form
+
+if ($this->getPaymentWhatIs() === 'See terms') {
+    $_gravdept_paypalMethod = 'PayPal Bill Me Later';
+} else {
+    $_gravdept_paypalMethod = 'PayPal Express Checkout';
+}
+?>
+
+<?php echo $this->__($_gravdept_paypalMethod); ?>
+
+<?php
+// GravDept:
+// Hide PayPal terms.
+// Should be recognizable to users or they'll choose alternative.
+// Don't give users bad UX (non-responsive PayPal content in tiny popup).
+?>
+<?php /*
+<a href="<?php echo $this->getPaymentAcceptanceMarkHref()?>" onclick="javascript:window.open('<?php echo $this->getPaymentAcceptanceMarkHref()?>','olcwhatispaypal','toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, ,left=0, top=0, width=400, height=350'); return false;">
+    <?php
+    if ($this->getPaymentWhatIs()) {
+        echo Mage::helper('paypal')->__($this->getPaymentWhatIs());
+    } else {
+        echo Mage::helper('paypal')->__('What is PayPal?');
+    }
+    ?>
+</a>
+*/ ?>

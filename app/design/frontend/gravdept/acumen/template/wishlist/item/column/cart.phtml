@@ -1,0 +1,72 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.6
+*/
+?>
+
+<?php
+/* @var $this Mage_Wishlist_Block_Customer_Wishlist_Item_Column_Cart */
+/* @var Mage_Wishlist_Model_Item $item */
+
+$item = $this->getItem();
+$product = $item->getProduct();
+
+// GravDept:
+// Moved to: /wishlist/item/column/info.phtml
+// Commented out because this causes an error since Mage CE 1.8.1.0.
+//$options = $this->getChild('customer.wishlist.item.options')->setItem($item)->getConfiguredOptions();
+?>
+
+<div class="cart-cell">
+    <?php
+    // GravDept:
+    // Moved to: /wishlist/item/column/info.phtml
+    ?>
+    <?php /*echo $this->getPriceHtml($product, empty($options));*/ ?>
+    
+    <div class="add-to-cart-alt">
+        <?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+            <div class="wishlist-qty">
+                <label for="qty[<?php echo $item->getId() ?>]"><?php echo $this->__('Quantity') ?></label>
+                <input type="text" class="input-text qty validate-not-negative-number" id="qty[<?php echo $item->getId() ?>]" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
+            </div>
+        <?php endif; ?>
+    
+        <?php if ($product->isSaleable()): ?>
+            <button type="button" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="button btn-cart"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+        <?php else: ?>
+            <?php if ($product->getIsSalable()): ?>
+                <p class="availability in-stock"><span><?php echo $this->__('In stock') ?></span></p>
+            <?php else: ?>
+                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    
+    <?php if ($product->isVisibleInSiteVisibility()): ?>
+        <a class="link-edit button button-small button-subtle" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('Configure') ?></a>
+    <?php endif ?>
+    
+    <?php
+    // GravDept
+    //
+    // Normally, Magento renders child templates when explicitly called via:
+    // $this->getChildHtml('block.name')
+    //
+    // Then all child templates in a block-template are rendered. Before/after parameters control sorting.
+    //
+    // This odd code is not the normal Magento way.
+    // It renders the XML-defined children, but ignores their configuration (explicit getChildHtml(), before/after position).
+    // You can move this code snippet's position around, but layout XML can't do its full job.
+    ?>
+    <?php foreach($this->getSortedChildren() as $childName):?>
+        <?php echo $this->getChildHtml($childName, false);?>
+    <?php endforeach;?>
+</div>

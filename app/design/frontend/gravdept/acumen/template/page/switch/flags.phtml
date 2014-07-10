@@ -1,0 +1,41 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php if (count($this->getStores())>1): ?>
+    <div class="form-language">
+        <label for="select-language"><?php echo $this->__('Your Language:') ?></label>
+
+        <select class="flags" id="select-language" onchange="window.location.href=this.value">
+            <?php foreach ($this->getStores() as $_lang): ?>
+                <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? 'selected="selected"' : ''; ?>
+                
+                <option value="<?php echo $_lang->getCurrentUrl(); ?>" style="background-image:url('<?php echo $this->getSkinUrl('images/flags/flag_'.$_lang->getCode().'.gif'); ?>');" <?php echo $_selected; ?>><?php echo $this->escapeHtml($_lang->getName()); ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+<?php endif; ?>
+
+<?php /* GravDept: testing flag switcher instead of dropdown. */ ?>
+<?php /*
+<?php if(count($this->getStores())>1): ?>
+    <div class="form-language switcher">
+        <?php foreach ($this->getStores() as $_lang): ?>
+            <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? 'active' : '' ?>
+            
+            <a class="flag" href="<?php echo $_lang->getCurrentUrl() ?>" title="<?php echo $this->escapeHtml($_lang->getName()) ?>">
+                <img class="<?php echo $_selected ?>" src="<?php echo $this->getSkinUrl("img/flag/" . $_lang->getCode() . ".png") ?>" alt="<?php echo $this->escapeHtml($_lang->getName()) ?>"/>
+            </a>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+*/ ?>

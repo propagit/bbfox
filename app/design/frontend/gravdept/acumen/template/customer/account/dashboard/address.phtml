@@ -1,0 +1,31 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2012 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.4
+ */
+?>
+
+<div id="dashboard-address" class="grid">
+	<div class="grid_2 alpha">
+		<h3><?php echo $this->__('Address Book') ?></h3>
+		<a class="button button-small button-subtle" href="<?php echo $this->getAddressBookUrl() ?>"><?php echo $this->__('Manage') ?></a>
+	</div>
+	
+	<div class="grid_3">
+		<h4><?php echo $this->__('Default Billing Address') ?></h4>
+		<address><?php echo $this->getPrimaryBillingAddressHtml() ?></address>
+		<a href="<?php echo $this->getPrimaryBillingAddressEditUrl() ?>"><?php echo $this->__('Edit') ?></a>
+	</div>
+	
+	<div class="grid_5 omega">
+		<h4><?php echo $this->__('Default Shipping Address') ?></h4>
+		<address><?php echo $this->getPrimaryShippingAddressHtml() ?></address>
+		<a href="<?php echo $this->getPrimaryShippingAddressEditUrl() ?>"><?php echo $this->__('Edit') ?></a>
+	</div>
+</div>

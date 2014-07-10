@@ -1,0 +1,45 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2011 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.0.0
+ */
+?>
+
+<?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order', $this->getOrder())): ?>
+	<script type="text/javascript">
+		//<![CDATA[
+		function giftMessageToogle(giftMessageIdentifier)
+		{
+			var link = $('order-item-gift-message-link-'+giftMessageIdentifier);
+			var container = $('order-item-gift-message-'+giftMessageIdentifier);
+			var row = $('order-item-row-'+giftMessageIdentifier);
+		
+			if(link.expanded) {
+				link.expanded = false;
+				link.removeClassName('expanded');
+				if(container.hasClassName('last')) {
+					row.addClassName('last');
+				}
+				container.hide();
+			} else {
+				link.expanded = true;
+				link.addClassName('expanded');
+				if(container.hasClassName('last')) {
+					row.removeClassName('last');
+				}
+				container.show();
+			}
+		
+			return false;
+		}
+		//]]>
+	</script>
+<?php endif; ?>
+
+<?php echo $this->getChildHtml('shipment_items') ?>

@@ -1,0 +1,36 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<div id="dashboard-tags" class="grid">
+	<div class="grid_2 alpha">
+		<h3><?php echo $this->__('Your Tags') ?></h3>
+		<a class="button button-small button-subtle" href="<?php echo $this->getAllTagsUrl() ?>"><?php echo $this->__('View All') ?></a>
+	</div>
+	
+	<div class="grid_8 omega">
+		<ol id="my-recent-tags">
+			<?php foreach( $this->getCollection()->getItems() as $_item ): ?>
+				<li>
+					<a class="product-name" href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a>
+						
+					<?php /*$_i = 0;*/ ?>
+					<ul class="tags-list">
+						<?php foreach( $_item->getProductTags() as $_tag ): ?>
+							<li><a href="<?php echo $_tag->getViewTagUrl() ?>"><?php echo $this->escapeHtml($_tag->getName()) ?></a><?php /*if(++$_i != sizeof($_item->getProductTags()->getItems())): ?>,<?php endif;*/ ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</li>
+			<?php endforeach; ?>
+		</ol>
+	</div>
+</div>

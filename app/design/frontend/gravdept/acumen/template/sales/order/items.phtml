@@ -1,0 +1,123 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php $_order = $this->getOrder() ?>
+
+<table id="order-view-table" class="flex-table">
+
+	<thead>
+		<tr>
+			<th class="width-full"><?php echo $this->__('Product') ?></th>
+			<th><?php echo $this->__('SKU #') ?></th>
+			<th class="a-right"><?php echo $this->__('Price') ?></th>
+			<th><abbr title="<?php echo $this->__('Quantity') ?>"><?php echo $this->__('Qty.') ?></abbr></th>
+			<th class="a-right"><?php echo $this->__('Subtotal') ?></th>
+		</tr>
+		
+		<?php /*
+		<tr>
+			<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceExclTax()): ?>
+				<th><?php echo $this->__('Excl. Tax') ?></th>
+			<?php endif; ?>
+			
+			<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceInclTax()): ?>
+				<th><?php echo $this->__('Incl. Tax') ?></th>
+			<?php endif; ?>
+			
+			<th><?php echo $this->__('Ordered') ?></th>
+			
+			<?php if (!$_order->getIsVirtual()): ?>
+				<th><?php echo $this->__('Shipped') ?></th>
+			<?php endif; ?>
+			
+			<th><?php echo $this->__('Canceled') ?></th>
+			
+			<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceExclTax()): ?>
+				<th><?php echo $this->__('Excl. Tax') ?></th>
+			<?php endif; ?>
+			
+			<?php if ($this->helper('tax')->displayCartBothPrices() || $this->helper('tax')->displayCartPriceInclTax()): ?>
+				<th><?php echo $this->__('Incl. Tax') ?></th>
+			<?php endif; ?>
+		</tr>
+		*/ ?>
+	</thead>
+	
+	<?php $colspan = 4; ?>
+	
+	<tfoot>
+		<tr>
+			<th colspan="<?php echo $colspan; ?>"><?php echo $this->__('Order Subtotal') ?></th>
+			<td><?php echo $_order->formatPrice($_order->getSubtotal()) ?></td>
+		</tr>
+		
+		<?php if ($_order->getDiscountAmount() > 0): ?>
+			<tr>
+				<th colspan="<?php echo $colspan; ?>"><?php echo $this->__('Discount') ?> <?php echo $this->__($_order->getCouponCode() ? '('.$_order->getCouponCode().')' : '') ?></th>
+				<td><?php echo $_order->formatPrice(0.00 - $_order->getDiscountAmount()) ?></td>
+			</tr>
+		<?php endif; ?>
+		
+		 <?php if (($_order->getTaxAmount() > 0) || (Mage::helper('tax')->displayZeroTax())): ?>
+			<?php echo $this->getChildHtml('tax'); ?>
+		<?php endif; ?>
+		
+		<?php if ($_order->getShippingAmount() || $_order->getShippingDescription()): ?>
+			<tr>
+				<th colspan="<?php echo $colspan; ?>"><?php echo $this->__('Shipping &amp; Handling') ?></th>
+				<td><?php echo $_order->formatPrice($_order->getShippingAmount()) ?></td>
+			</tr>
+		<?php endif; ?>
+		
+		<tr>
+			<th colspan="<?php echo $colspan; ?>"><strong><?php echo $this->__('Grand Total') ?></strong></th>
+			<td><strong><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></strong></td>
+		</tr>
+		
+		<?php if ($_order->isCurrencyDifferent()): ?>
+			<tr>
+				<th colspan="<?php echo $colspan; ?>"><strong><?php echo $this->__('Grand Total To Be Charged (Currency Conversion)') ?></strong></th>
+				<td><strong><?php echo $_order->formatBasePrice($_order->getBaseGrandTotal()) ?></strong></td>
+			</tr>
+		<?php endif; ?>
+	</tfoot>
+	
+	<?php $_items = $_order->getItemsCollection(); ?>
+	
+	<tbody>
+		<?php foreach ($_items as $_item): ?>
+			<?php if ($_item->getParentItem()) continue; ?>
+			
+				<?php echo $this->getItemHtml($_item) ?>
+				
+				<?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order_item', $_item) && $_item->getGiftMessageId()): ?>
+					<?php $_giftMessage = $this->helper('giftmessage/message')->getGiftMessageForEntity($_item); ?>
+					
+					<tr id="order-item-gift-message-<?php echo $_item->getId() ?>" style="display:none;">
+						<td class="gift-message-row" colspan="7">
+							<a href="#" onclick="return giftMessageToogle('<?php echo $_item->getId() ?>');"><img src="<?php echo $this->getSkinUrl('images/gift-message-close.gif') ?>" alt="<?php echo $this->__('Close') ?>" /></a>
+							<dl class="gift-message">
+								<dt><strong><?php echo $this->__('From') ?></strong> <?php echo $this->escapeHtml($_giftMessage->getRecipient()) ?></dt>
+								<dt><strong><?php echo $this->__('To') ?></strong> <?php echo $this->escapeHtml($_giftMessage->getSender()) ?></dt>
+								<dd><?php echo $this->helper('giftmessage/message')->getEscapedGiftMessage($_item) ?></dd>
+							</dl>
+						</td>
+					</tr>
+				<?php endif ?>
+			
+		<?php endforeach; ?>
+	</tbody>
+
+</table>
+
+<script type="text/javascript">decorateTable('order-view-table')</script>

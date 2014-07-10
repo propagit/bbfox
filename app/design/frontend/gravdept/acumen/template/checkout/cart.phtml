@@ -1,0 +1,159 @@
+<?php
+/**
+ * Acumen for Magento
+ * http://gravitydept.com/to/acumen-magento
+ *
+ * @author     Brendan Falkowski
+ * @package    gravdept_acumen
+ * @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+ * @license    All rights reserved.
+ * @version    1.3.6
+ */
+?>
+<?php
+/**
+ * Shopping cart template
+ *
+ * @see Mage_Checkout_Block_Cart
+ */
+?>
+
+<div class="grid-block">
+	<h1><?php echo $this->__('My Cart') ?></h1>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+</div>
+
+<div class="grid">
+	<div class="grid_9">
+		<form id="cart-update-form" action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+			<?php echo $this->getBlockHtml('formkey'); ?>
+
+			<table id="cart-table" class="flex-table">
+				<?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+			
+				<thead>
+					<tr>
+						<th class="hide-th" rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Remove') ?></th>
+						<th class="width-full" rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Product') ?></th>
+						
+						<?php /* GravDept, hidden in /checkout/cart/item/default.phtml */ ?>
+						<?php /*
+						<th rowspan="<?php echo $mergedCells; ?>"></th>
+						*/ ?>
+						
+						<?php /* GravDept, hidden in /checkout/cart/item/default.phtml */ ?>
+						<?php /*
+						<?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+							<th rowspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Move To Wishlist') ?></th>
+						<?php endif; ?>
+						*/ ?>
+						
+						<th class="a-right" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Price') ?></th>
+						<th rowspan="<?php echo $mergedCells; ?>"><abbr title="<?php echo $this->__('Quantity') ?>"><?php echo $this->__('Qty.') ?></abbr></th>
+						<th class="a-right" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
+					</tr>
+					
+					<?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+						<tr>
+							<th class="currency_cell"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+							<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+							<th class="currency_cell"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+							<th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+						</tr>
+					<?php endif; ?>
+				</thead>
+				
+				<tfoot>
+					<tr>
+						<td colspan="50">
+							<button type="submit" name="update_cart_action" value="update_qty" class="button button-small button-subtle btn-update"><span><span><?php echo $this->__('Update Quantity'); ?></span></span></button>
+                            
+                            <?php /* GravDept, hide this */ ?>
+                            <?php /*<button type="submit" name="update_cart_action" value="empty_cart" class="button button-small button-subtle btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>*/ ?>
+                            
+                            <!--[if lt IE 8]>
+                            <input type="hidden" id="update_cart_action_container" />
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                Event.observe(window, 'load', function()
+                                {
+                                    // Internet Explorer (lt 8) does not support value attribute in button elements
+                                    $emptyCartButton = $('empty_cart_button');
+                                    $cartActionContainer = $('update_cart_action_container');
+                                    if ($emptyCartButton && $cartActionContainer) {
+                                        Event.observe($emptyCartButton, 'click', function()
+                                        {
+                                            $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                            $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                            $cartActionContainer.setValue('empty_cart');
+                                        });
+                                    }
+
+                                });
+                            //]]>
+                            </script>
+                            <![endif]-->
+						</td>
+					</tr>
+				</tfoot>
+				
+				<tbody>
+					<?php foreach($this->getItems() as $_item): ?>
+						<?php echo $this->getItemHtml($_item) ?>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		</form>
+		
+		<?php /* GravDept. Hidden. */ ?>
+		<?php /*if($this->getContinueShoppingUrl()): ?>
+		    <a href="<?php echo $this->getContinueShoppingUrl() ?>" class="button button-subtle"><?php echo $this->__('Continue Shopping') ?></a>
+		<?php endif;*/ ?>
+		
+		<?php if ( $this->getChildHtml('snippet_cart_list_below') ): ?>
+		    <div class="snippet snippet-cart-list-below"><?php echo $this->getChildHtml('snippet_cart_list_below') ?></div>
+		<?php endif; ?>
+	</div>
+	
+	<div class="grid_3">
+		<?php /* GravDept. Hidden. */ ?>
+		<?php /*if(!$this->hasError()): ?>
+			<?php echo $this->getChildHtml('top_methods') ?>
+		<?php endif;*/ ?>
+		
+		<?php echo $this->getChildHtml('totals'); ?>
+		
+		<?php if(!$this->hasError()): ?>
+			<div id="cart-checkout-methods">
+				<?php echo $this->getChildHtml('methods') ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</div>
+
+<div id="cart-widgets" class="grid">
+	<div class="grid_4">
+	    <?php echo $this->getChildHtml('coupon') ?>
+		
+		<?php /* Extensions placeholder */ ?>
+		<?php echo $this->getChildHtml('checkout.cart.extra') ?>
+		
+		<?php if ( $this->getChildHtml('snippet_cart_coupon_below') ): ?>
+		    <div class="snippet snippet-coupon-below"><?php echo $this->getChildHtml('snippet_cart_coupon_below') ?></div>
+		<?php endif; ?>
+	</div>
+	
+	<div class="grid_8">
+		<?php if (!$this->getIsVirtual()): ?>
+			<?php echo $this->getChildHtml('shipping'); ?>
+		<?php else: ?>
+			&nbsp;
+		<?php endif; ?>
+	</div>	
+</div>
+
+<?php echo $this->getChildHtml('crosssell') ?>
+
+<?php if ( $this->getChildHtml('snippet_cart_bottom') ): ?>
+    <div class="snippet snippet-cart-bottom"><?php echo $this->getChildHtml('snippet_cart_bottom') ?></div>
+<?php endif; ?>

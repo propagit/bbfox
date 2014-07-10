@@ -1,0 +1,55 @@
+<?php
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2013 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.5
+*/
+?>
+
+<?php $_orders = $this->getOrders(); ?>
+
+<div id="dashboard-order-history" class="grid">
+	<div class="grid_2 alpha">
+		<h3><?php echo $this->__('Order History') ?></h3>
+		<?php if( sizeof($_orders->getItems()) > 0 ): ?>
+			<a class="button button-small button-subtle" href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('View All') ?></a>
+		<?php endif; ?>
+	</div>
+	
+	<div class="grid_8 omega">
+		<?php if( sizeof($_orders->getItems()) > 0 ): ?>
+			<table id="recent-order-history-table" class="data-table">
+				<thead>
+					<tr>
+    					<th><?php echo $this->__('Order #') ?></th>
+    					<th><?php echo $this->__('Date') ?></th>
+						<th><?php echo $this->__('Recipient') ?></th>
+						<th><?php echo $this->__('Total') ?></th>
+						<th><?php echo $this->__('Status') ?></th>
+						<th><?php echo $this->__('Details') ?></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<?php foreach ($_orders as $_order): ?>
+						<tr>
+    						<td><?php echo $_order->getRealOrderId() ?></td>
+    						<td><?php echo $this->formatDate($_order->getCreatedAtStoreDate(), 'medium') ?></td>
+							<td><?php echo $_order->getShippingAddress() ? $this->escapeHtml($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+							<td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+							<td><?php echo $_order->getStatusLabel() ?></td>
+							<td><a href="<?php echo $this->getViewUrl($_order) ?>" class="button button-micro button-subtle"><?php echo $this->__('View') ?></a></td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+		<?php else: ?>
+			<p><?php echo $this->__('You have placed no orders.') ?></p>
+		<?php endif; ?>
+	</div>
+</div>
