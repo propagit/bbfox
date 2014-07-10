@@ -1,0 +1,2266 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!--
+/**
+* Acumen for Magento
+* http://gravitydept.com/to/acumen-magento
+*
+* @author     Brendan Falkowski
+* @package    gravdept_acumen
+* @copyright  Copyright 2014 Gravity Department http://gravitydept.com
+* @license    All rights reserved.
+* @version    1.3.7
+*/
+-->
+
+<head>
+	<meta charset="utf-8">
+	<title>Acumen 1.3.7 &ndash; Documentation</title>
+	<link rel="stylesheet" href="css/style.css">
+	
+	<!--[if lt IE 9]>
+		<script src="js/html5.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+
+<header>
+	<h1>Acumen 1.3.7 &ndash; Documentation</h1>
+	
+	<nav id="nav">
+		<h2>Contents</h2>
+		
+		<ol>
+			<li><a href="#overview">Overview</a></li>
+			<li><a href="#install-magento">Install Magento</a></li>
+			<li><a href="#magento-basics">Magento Basics</a></li>
+			<li><a href="#upload-files">Upload Files</a></li>
+			<li><a href="#configure-magento">Configure Magento</a></li>
+			<li><a href="#categories">Categories</a></li>
+			<li><a href="#url-rewrites">URL Rewrites</a></li>
+			<li><a href="#cms-pages">CMS Pages</a></li>
+			<li><a href="#ui-widgets">UI Widgets</a></li>
+			<li><a href="#snippets">Snippets</a></li>
+			<li><a href="#personalize">Personalize</a></li>
+			<li><a href="#upgrades">Upgrades</a></li>
+			<li><a href="#troubleshooting">Troubleshooting</a></li>
+			<li><a href="#support">Support</a></li>
+			<li><a href="#hiring-us">Hiring Us</a></li>
+			<li><a href="#donate">Donate</a></li>
+			<li><a href="#the-end">The End</a></li>
+		</ol>
+	</nav>
+</header>
+
+<div id="wrapper">
+
+<!-- Overview -->
+	
+	<section id="overview">
+	
+		<h1>Acumen 1.3.7</h1>
+		<p class="keynote">For Magento 1.9.0.1 Community</p>
+		
+		<p class="keynote">Thank you for buying from <a href="http://gravitydept.com">Gravity Department</a>. 
+		That was pretty smart of you. Reading this documentation will make all your dreams come true. Trust us. 
+		We made gravity.</p>
+		
+		<table>
+			<tr>
+				<th>Item</th>
+				<td><a href="http://gravitydept.com/to/acumen-magento">http://gravitydept.com/to/acumen-magento</a></td>
+			</tr>
+			
+			<tr>
+				<th>Demo</th>
+				<td><a href="http://acumen-magento.gravdept.com">http://acumen-magento.gravdept.com</a></td>
+			</tr>
+			
+			<tr>
+				<th>Changelog</th>
+				<td><a href="http://acumen-magento.gravdept.com/tour/changelog/">http://acumen-magento.gravdept.com/tour/changelog/</a></td>
+			</tr>
+			
+			<tr>
+				<th>Published</th>
+				<td>2014 May 19</td>
+			</tr>
+		</table>
+		
+		<h2>Documentation conventions</h2>
+		
+		<p>Several conventions are used throughout this guide. This is a brief overview of them.</p>
+		
+		<ul>
+			<li><code>Code examples</code> and <code>/paths/to/files</code> are offset from text like so.</li>
+		
+			<li><code>{item-zip}</code> refers to the ZIP package that you purchased on ThemeForest.</li>
+		
+			<li><code>{server}</code> refers to the directory where Magento is installed on your server.</li>
+			
+			<li><dfn>Definitions</dfn> refer to functionality or Magento concepts with special meaning.</li>
+		</ul>
+		
+		<p class="note">Notes contain important related info or tips.</p>
+		
+		<p class="warn">Warnings contain critical advice or recommendations.</p>
+		
+	</section>
+	
+<!-- Install Magento -->
+	
+	<section id="install-magento">
+	
+		<h1>Install Magento</h1>
+		
+		<p class="keynote">Websites are complex technical operations. If you need help evaluating server 
+		infrastructure, selecting hosting, installing Magento, installing this item, and configuring everything 
+		then see: <a href="#hiring-us">Hiring Us</a>.</p>
+		
+		<h2>Hosting Recommendation</h2>
+		
+		<p>GravDept has sold hundreds of Magento themes and has seen Magento running in ~40 different server environments. 
+		We know from experience what works and what doesn't.</p>
+		
+		<h3>What works</h3>
+		
+		<figure class="f-right"><a href="http://gravitydept.com/to/nexcess"><img src="img/install-magento/nexcess.png" alt="Nexcess"></a></figure>
+		
+		<p>We recommend <a href="http://gravitydept.com/to/nexcess">Nexcess hosting</a> for Magento websites. Each SIP 
+		(Secure Isolated Platform) is an entirely self-contained and fine-tuned eCommerce environment. They provide 
+		the most stable, secure, and scalable out-of-the-box Magento hosting solution.</p>
+		
+		<h4>Nexcess SIP-100 features:</h4>
+		
+		<ul>
+		<li>Full PCI compliance</li>
+		<li>Nightly database backups</li>
+		<li>R1Soft continuous filesystem backups</li>
+		<li>7.5 GB of RAID 10 storage</li>
+		<li>16 GB memory</li>
+		<li>75 GB/mo bandwidth</li>
+		</ul>
+		
+		<p>The SIP-100 plan has more than enough resources for most stores. GravDept uses SIP-100 servers to showcase
+		its Magento themes, and we fully recommend them to our clients. You can always scale up if needed. Plans affordably 
+		start at $24.95/mo. Trust us, get <a href="http://gravitydept.com/to/nexcess">Nexcess hosting</a>.</p>
+		
+		<h3>What to avoid</h3>
+		
+		<p>Magento requires more server resources than cheap shared hosting like GoDaddy or Bluehost can deliver. 
+		Don't even try it. We warned you.</p>
+		
+		<h2>You already have a server, huh?</h2>
+		
+		<p>Your server must meet Magento's <a href="http://www.magentocommerce.com/system-requirements">system requirements</a>.
+		Download and run the 
+		<a href="http://www.magentocommerce.com/knowledge-base/entry/how-do-i-know-if-my-server-is-compatible-with-magento">server compatibility check</a>.
+		If you failed the test, get a server from <a href="http://gravitydept.com/to/nexcess">Nexcess</a>.</p>
+		
+		<h2>Install Magento</h2>
+		
+		<p class="note">If you have <a href="http://gravitydept.com/to/nexcess">Nexcess</a> hosting, you can skip this. Magento 
+		is pre-installed and optimized by Nexcess. Lucky you!</p>
+		
+		<p>If you must do things yourself, at least do yourself a favor: install Magento using SSH without 
+		sample data in your server root. Crucial has a decent guide about 
+		<a href="http://www.crucialwebhost.com/kb/article/installing-magento-via-ssh/">installing Magento via SSH</a>.</p>
+		
+		<pre><code>$ wget http://www.magentocommerce.com/downloads/assets/1.9.0.1/magento-1.9.0.1.tar.gz
+$ tar -zxvf magento-1.9.0.1.tar.gz
+$ mv magento/* magento/.htaccess .
+$ chmod o+w var var/.htaccess app/etc
+$ chmod -R o+w media
+$ chmod 550 mage
+$ ./mage mage-setup .
+$ rm -rf magento/ magento-1.9.0.1.tar.gz</code></pre>
+
+        <p class="note">Shell commands are marked with: <code>$</code><br>
+        If you don't understand what that means, get <a href="http://gravitydept.com/to/nexcess">Nexcess hosting</a> (notice a pattern?) and see: <a href="#hiring-us">Hiring Us</a>.</p>
+        
+        <p class="warn">You must confirm these commands match the target Magento version indicated for this release.
+        If a newer stable release is available from Magento, an older theme release will not work.
+        With Magento you cannot mix/match core and theme releases.
+        Modify these commands if necessary (it's your job to check).</p>
+		
+		<p>Visit the URL where you installed Magento, and complete the setup. You'll need your DB info.</p>
+		
+	</section>
+	
+<!-- Magento Basics -->
+
+	<section id="magento-basics">
+	
+		<h1>Magento Basics</h1>
+		
+		<h2>Login to the Magento Admin</h2>
+		
+		<p>The default URL to access the Magento Admin is:<br>
+		<code>http://www.example.com/index.php/admin</code></p>
+		
+		<p>After you've configured Magento to use URL rewrites on the frontend you can use:<br>
+		<code>http://www.example.com/admin</code></p>
+		
+		<p class="note">You can also setup a custom admin URL, but I leave that to you. Nexcess does this for improved security.</p>
+		
+		<h2>Magento Caches</h2>
+		
+		<p>Disable all caches in "Magento Admin &gt; System &gt; Cache Management".</p>
+		
+		<p class="note">Disabling caching makes changes to layouts/templates appear immediately, which is good for testing. 
+		It also puts more strain on the server because Magento has to fully process every request. You should re-enable 
+		caching before launching your website.</p>
+		
+		<h2>Magento Indices</h2>
+		
+		<p>Refresh all indices in "Magento Admin &gt; System &gt; Index Management".</p>
+		
+		<p class="note">Some admin operations will require different indices to be refreshed. Get familiar with this process.</p>
+		
+	</section>
+
+<!-- Upload Files -->
+	
+	<section id="upload-files">
+	
+		<h1>Upload Files</h1>
+		
+		<p>Look inside the <code>{item-zip}/httpdocs</code> directory, which aligns to your Magento root directory. 
+		Ready your FTP application.</p>
+		
+		<h2>Local Code Files</h2>
+		
+		<p>Upload <code>{item-zip}/httpdocs/app/code/local/</code> to 
+		<code>{server}/app/code/local/</code> including all its files and subfolders.</p>
+		
+		<p class="note">If you visit the frontend now there may be an error because Magento's default/default package doesn't use Acumen's custom code.
+		Ignore this error.
+		After configuring Magento (in the next section) by setting the correct package/theme hierarchy the frontend will start working normally.</p>
+		
+		<p class="note">Local code overrides affect all stores powered by the Magento installation.
+		This may lead to unexpected results and constrain a few custom features in Acumen.</p>
+		
+		<h2>Template + Layout Files</h2>
+		
+		<p>Upload <code>{item-zip}/httpdocs/app/design/frontend/gravdept/</code> to 
+		<code>{server}/app/design/frontend/gravdept/</code> including all its files and subfolders.</p>
+		
+		<h2>Skin Files</h2>
+		
+		<p>Upload <code>{item-zip}/httpdocs/skin/frontend/gravdept/</code> to
+		<code>{server}/skin/frontend/gravdept/</code> including all its files and subfolders.</p>
+		
+	</section>
+	
+<!-- Configure Magento -->
+	
+	<section id="configure-magento">
+		
+		<h1>Configure Magento</h1>
+		
+		<h2>System Configuration</h2>
+		
+		<ol>
+			<li>Open in Excel or Google Docs: <code>{item-zip}/theme-config.xls</code></li>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "System &gt; Configuration"</li>
+		</ol>
+		
+		<p>Navigate through each section while following the spreadsheet. Configure every option as indicated or 
+		to fit your needs.</p>
+		
+		<h3>Notes on configuration</h3>
+		
+		<p>This file covers the settings relevant to configuring this theme. Magento has literally hundreds of 
+		configuration settings. Some need your thought and action, while some can stay default. These decisions 
+		are not covered because they are specific to your business and technical requirements. If you need assistance 
+		or advice, see: <a href="#hiring-us">Hiring Us</a>.</p>
+		
+		<h2>Manage Stores</h2>
+		
+		<ol>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "System &gt; Manage Stores"</li>
+		</ol>
+		
+		<h3>Website Name</h3>
+		
+		<table>
+			<tr>
+				<th>Name</th>
+				<td>www.example.com</td>
+			</tr>
+			
+			<tr>
+				<th>Code</th>
+				<td>base</td>
+			</tr>
+			
+			<tr>
+				<th>Sort order</th>
+				<td>0</td>
+			</tr>
+			
+			<tr>
+				<th>Default store</th>
+				<td>Acumen Store</td>
+			</tr>
+		</table>
+		
+		<p class="note">Replace <code>www.example.com</code> with your domain. Replace "Acumen" with your store name.</p>
+		
+		<h3>Store Name</h3>
+		
+		<table>
+			<tr>
+				<th>Website</th>
+				<td>www.example.com</td>
+			</tr>
+			
+			<tr>
+				<th>Name</th>
+				<td>Acumen Store</td>
+			</tr>
+			
+			<tr>
+				<th>Root category</th>
+				<td>Default Category</td>
+			</tr>
+			
+			<tr>
+				<th>Default store view</th>
+				<td>Acumen</td>
+			</tr>
+		</table>
+		
+		<p class="note">Replace "Acumen" with your store name.</p>
+		
+		<h3>Store View Name</h3>
+		
+		<table>
+			<tr>
+				<th>Store</th>
+				<td>Acumen Store</td>
+			</tr>
+			
+			<tr>
+				<th>Name</th>
+				<td>Acumen</td>
+			</tr>
+			
+			<tr>
+				<th>Code</th>
+				<td>default</td>
+			</tr>
+			
+			<tr>
+				<th>Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>Sort order</th>
+				<td>0</td>
+			</tr>
+		</table>
+		
+		<p class="note">Replace "Acumen" with your store name.</p>
+		
+	</section>
+	
+<!-- Categories -->
+	
+	<section id="categories">
+		<h1>Categories</h1>
+		
+		<ol>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "Catalog &gt; Manage Categories"</li>
+		</ol>
+		
+		<h2>Notes on Categories</h2>
+		
+		<figure><img class="border" src="img/categories/magento-manage-categories.png" alt="Magento category config" /></figure>
+		
+		<p>Look at the screenshot. You'll see a category named "Default Category" which is a <dfn>Root Category</dfn>. 
+		In Magento, every root category is assigned to a <dfn>Store</dfn> (and hence <dfn>Store View</dfn>) 
+		which you configured already.</p>
+		
+		<p>Your first-level of navigation is created as sub-categories of the root category. You can drag/drop to change 
+		the nesting structure of categories. Most categories should have these options:</p>
+		
+		<table>
+			<tr>
+				<th>General Info &gt; Name</th>
+				<td><em>{ your category name }</em></td>
+			</tr>
+			
+			<tr>
+				<th>General Info &gt; Is Active</th>
+				<td>Yes</td>
+			</tr>
+			
+			<tr>
+				<th>Display Settings &gt; Is Anchor</th>
+				<td>Yes (if you want to use layered navigation)</td>
+			</tr>
+		</table>
+		
+		<p class="note">Uploading a category image will remove the title and description in the category header. The image 
+		should be 930px wide, but the height can be anything.</p>
+		
+		<h2>Notes on Navigation Menus</h2>
+		
+		<p>The primary navigation is optimized to show three-tier categories. This allows very complicated 
+		catalog shapes to be organized in a small area. If more than seven sub-categories exist, then sub-categories 
+		will be listed vertically to prevent running off the page and sub-sub-categories are hidden.</p>
+		
+		<p>The primary navigation is generated programmatically (based on your catalog shape) and styled using CSS for 
+		consistency. For odd catalog shapes (very flat or narrow) the menus may be awkward. It is possible to designate 
+		specific layouts for specific categories, but this requires custom CSS and possibly hardcoding the menus 
+		depending on complexity.</p>
+		
+		<h2>Add the &ldquo;Featured&rdquo; Category</h2>
+		
+		<p>Create a <dfn>Featured</dfn> category to use later with the <a href="#category-slider">Category Slider</a>. 
+		Write down the <dfn>Category ID</dfn> for later (see screenshot above for notes). 
+		Give this category special options to exclude it from the frontend navigation:</p>
+		
+		<table>
+			<tr>
+				<th>General Info &gt; Is Active</th>
+				<td>Yes</td>
+			</tr>
+			
+			<tr>
+				<th>General Info &gt; Include In Navigation Menu</th>
+				<td>No</td>
+			</tr>
+			
+			<tr>
+				<th>Display Settings &gt; Is Anchor</th>
+				<td>No</td>
+			</tr>
+		</table>
+		
+	</section>
+	
+<!-- URL Rewrites -->
+	
+	<section id="url-rewrites">
+		
+		<h1>URL Rewrites</h1>
+		
+		<ol>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "Catalog &gt; URL Rewrite Management"</li>
+			<li>Click "Add URL Rewrite"</li>
+		</ol>
+		
+		<table>
+			<tr>
+				<th>Type</th>
+				<td>Custom</td>
+			</tr>
+			
+			<tr>
+				<th>ID Path</th>
+				<td>contact</td>
+			</tr>
+			
+			<tr>
+				<th>Request Path</th>
+				<td>contact</td>
+			</tr>
+			
+			<tr>
+				<th>Target Path</th>
+				<td>contacts</td>
+			</tr>
+			
+			<tr>
+				<th>Redirect</th>
+				<td>No</td>
+			</tr>
+			
+			<tr>
+				<th>Description</th>
+				<td>Redirect <code>/contact</code> to the <code>/contacts</code> module. Shows <code>/contact</code> as the URL.</td>
+			</tr>
+		</table>
+		
+		<table>
+			<tr>
+				<th>Type</th>
+				<td>Custom</td>
+			</tr>
+			
+			<tr>
+				<th>ID Path</th>
+				<td>contacts</td>
+			</tr>
+			
+			<tr>
+				<th>Request Path</th>
+				<td>contacts</td>
+			</tr>
+			
+			<tr>
+				<th>Target Path</th>
+				<td>contact</td>
+			</tr>
+			
+			<tr>
+				<th>Redirect</th>
+				<td>Permanent (301)</td>
+			</tr>
+			
+			<tr>
+				<th>Description</th>
+				<td>Force <code>/contacts</code> to redirect to preferred <code>/contact</code>.</td>
+			</tr>
+		</table>
+		
+	</section>
+	
+<!-- CMS Pages -->
+	
+	<section id="cms-pages">
+		
+		<h1>CMS Pages</h1>
+		
+		<ol>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "CMS &gt; Pages"</li>
+			<li>Click "Add New Page"</li>
+		</ol>
+		
+		<!-- Home -->
+		
+		<h2>Home</h2>
+		
+		<table>
+			<tr>
+				<th>Page Info &gt; Page Title</th>
+				<td>Home</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; URL Key</th>
+				<td>home</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>Design &gt; Layout</th>
+				<td>1 column</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Content &gt; Content</h3>
+
+		<pre><code>&lt;div class="promo-slider promo-slider-right"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/1.jpg" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/2.jpg" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/3.jpg" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;ul class="promos"&gt;
+        &lt;li&gt;&lt;a href="{{store url="sub/link-1" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/promo/1.jpg" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="{{store url="sub/link-2" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/promo/2.jpg" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="{{store url="sub/link-3" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/home/promo/3.jpg" }}" alt="Promo 3" /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="grid"&gt;
+    &lt;div class="grid_6"&gt;{{block type="catalog/product_new" column_count="2" label="New Products" template="gravdept/catalog/new-products-slider.phtml" }}&lt;/div&gt;
+    &lt;div class="grid_6"&gt;{{block type="catalog/product_list" category_id="9" column_count="2" label="Featured Products" template="gravdept/catalog/category-slider.phtml" }}&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="grid static-promo static-promo-1-3"&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/home/1.jpg" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/home/2.jpg" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/home/3.jpg" }}" alt="Promo 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Design &gt; Layout Update XML</h3>
+
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+		
+		<!-- About -->
+		
+		<h2>About</h2>
+		
+		<table>
+			<tr>
+				<th>Page Info &gt; Page Title</th>
+				<td>About</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; URL Key</th>
+				<td>about</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>Design &gt; Layout</th>
+				<td>1 column</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Content &gt; Content</h3>
+		
+		<pre><code>&lt;div class="grid-block"&gt;
+    &lt;h1&gt;About Us&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="about-content" class="grid"&gt;
+    &lt;div class="grid_4"&gt;
+        &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum 
+        tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+        Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. 
+        Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt 
+        condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. 
+        Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="grid_4"&gt;
+        &lt;h2&gt;Sub Heading&lt;/h2&gt;
+        
+        &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum 
+        tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. 
+        Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. 
+        Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;div class="grid_4"&gt;
+        &lt;h2&gt;Sub Heading&lt;/h2&gt;
+        
+        &lt;p&gt;Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum 
+        tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper.&lt;/p&gt;
+        
+        &lt;h3&gt;Sub Sub Heading&lt;/h3&gt;
+        
+        &lt;p&gt;Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper 
+        pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit 
+        eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<!-- Enable Cookies -->
+		
+		<h2>Enable Cookies</h2>
+		
+		<table>
+			<tr>
+				<th>Page Info &gt; Page Title</th>
+				<td>Enable Cookies</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; URL Key</th>
+				<td>enable-cookies</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>Design &gt; Layout</th>
+				<td>1 column</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Content > Content</h3>
+		
+		<pre><code>&lt;div class="grid-block"&gt;
+    &lt;h1&gt;Enable Cookies&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;div id="enable-cookies" class="grid"&gt;
+    &lt;div class="grid_6"&gt;
+        &lt;h2&gt;What Are Cookies?&lt;/h2&gt;
+        
+        &lt;p&gt;Cookies are short pieces of data that are sent to your computer when you visit a website. 
+        On later visits, this data is then returned to that website. 
+        Cookies allow us to recognize you automatically whenever you visit our site so that we can personalize your experience and provide you with better service.&lt;/p&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="grid_6"&gt;
+        &lt;h2&gt;Why Are They Required?&lt;/h2&gt;
+        
+        &lt;p&gt;We use cookies for fraud prevention and website functionality. 
+        If your web browser is set to refuse cookies, you will not be able to complete a purchase, or take advantage of certain features such as adding items to your shopping cart or receiving personalized recommendations.&lt;/p&gt;
+        
+        &lt;p&gt;We strongly encourage you to configure your web browser to accept cookies.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<!-- Page Not Found -->
+		
+		<h2>Page Not Found</h2>
+		
+		<table>
+			<tr>
+				<th>Page Info &gt; Page Title</th>
+				<td>Page Not Found</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; URL Key</th>
+				<td>page-not-found</td>
+			</tr>
+			
+			<tr>
+				<th>Page Info &gt; Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>Design &gt; Layout</th>
+				<td>1 column</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Content &gt; Content</h3>
+
+		<pre><code>&lt;div id="page-not-found" class="grid-block"&gt;
+    &lt;h1&gt;Page Not Found&lt;/h1&gt;
+
+    &lt;h2&gt;What Happened?&lt;/h2&gt;
+
+    &lt;ul class="bullet"&gt;
+        &lt;li&gt;If you typed the address, double-check the spelling.&lt;/li&gt;
+        &lt;li&gt;If you followed a link to get here, it might be outdated.&lt;/li&gt;
+        &lt;li&gt;The page might not exist anymore.&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;h2&gt;This Might Help&lt;/h2&gt;
+    
+    &lt;ul class="bullet"&gt;
+        &lt;li&gt;Use the search form to keep looking.&lt;/li&gt;
+        &lt;li&gt;Start at the &lt;a href="{{store direct_url="" }}"&gt;home page&lt;/a&gt;.&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+		
+	</section>
+	
+<!-- UI Widgets -->
+	
+	<section id="ui-widgets">
+	
+		<h1>UI Widgets</h1>
+		
+		<p class="keynote">UI Widgets are flexible and reusable user interface components for building 
+		interactive content.</p>
+		
+		<p>You can customize and include multiple UI Widgets in <dfn>CMS Pages</dfn> or <dfn>CMS Static Blocks</dfn> with no additional programming.
+		There are lots of UI Widgets to choose from:</p>
+		
+		<ul>
+		    <li><a href="#category-slider">Category Slider</a></li>
+		    <li><a href="#new-products-slider">New Products Slider</a></li>
+		    <li><a href="#modal-overlay">Modal Overlay</a></li>
+		    <li><a href="#tabs">Tabs</a></li>
+			<li><a href="#promo-slider-right">Promo Slider Right</a></li>
+			<li><a href="#thumb-slider-right">Thumb Slider Right</a></li>
+			<li><a href="#grid-slider-full">Grid Slider Full</a></li>
+			<li><a href="#grid-slider-3-4">Grid Slider 3/4</a></li>
+			<li><a href="#grid-slider-2-3">Grid Slider 2/3</a></li>
+			<li><a href="#grid-slider-1-2">Grid Slider 1/2</a></li>
+			<li><a href="#grid-slider-1-3">Grid Slider 1/3</a></li>
+			<li><a href="#grid-slider-1-4">Grid Slider 1/4</a></li>
+			<li><a href="#static-promo-1-2">Static Promo 1/2</a></li>
+			<li><a href="#static-promo-1-3">Static Promo 1/3</a></li>
+			<li><a href="#static-promo-1-4">Static Promo 1/4</a></li>
+		</ul>
+		
+		<h2 class="p3">Widgets &amp; Asset Context</h2>
+		
+		<p>Most UI Widgets have image assets for a specific <dfn>context</dfn> like the 'Home' page.
+		Storing assets in a logical and consistent manner keeps you organized.
+		All UI Widget assets follow this file pattern:</p>
+	
+		<pre><code>{server}skin/frontend/gravdept/acumen/media/{widget-name}/{context}/</code></pre>
+		
+		<p>In the Acumen Tour, all UI Widget examples have the <code>tour</code> context:</p>
+		
+		<pre><code>{server}skin/frontend/gravdept/acumen/media/promo-slider-right/tour/</code></pre>
+		
+		<p>Likewise on the 'Home' page, the <code>promo-slider-right</code> widget has the <code>home</code> context:</p>
+		
+		<pre><code>{server}skin/frontend/gravdept/acumen/media/promo-slider-right/home/</code></pre>
+		
+		<p>Each UI Widget may be used multiple in multiple places, and thus will have multiple contexts.</p>
+		
+	<!-- Category Slider -->
+		
+		<h2 id="category-slider">Category Slider</h2>
+		
+		<p>A variable-width slider that shows products from a specific category.
+		Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>{{block type="catalog/product_list" category_id="9" column_count="2" label="Featured Products" template="gravdept/catalog/category-slider.phtml" }}</code></pre>
+		
+		<table>
+			<tr>
+				<th><code>category_id=""</code></th>
+				<td>Get category ID from "Magento Admin &gt; Catalog &gt; Manage Categories"</td>
+			</tr>
+			
+			<tr>
+				<th><code>column_count=""</code></th>
+				<td><code>1</code>, <code>2</code>, <code>3</code>, or <code>4</code> (defaults to <code>2</code>)</td>
+			</tr>
+			
+			<tr>
+				<th><code>label=""</code></th>
+				<td>Set the label (defaults to <code>Featured Products</code>)</td>
+			</tr>
+		</table>
+		
+		<p class="note">This widget must be used within a <code>&lt;div class="grid-block"&gt;</code> or 
+		<code>&lt;div class="grid"&gt;</code> for proper margins.</p>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+		
+	<!-- New Products Slider -->
+	
+		<h2 id="new-products-slider">New Products Slider</h2>
+		
+		<p>A variable-width slider that shows products within the defined date range.
+		Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+		
+		<ol>
+			<li>Login to the Magento Admin</li>
+			<li>Navigate to "Catalog &gt; Manage Products"</li>
+			<li>Edit a product</li>
+		</ol>
+		
+		<table>
+			<tr>
+				<th>General &gt; Set Product As New From Date</th>
+				<td>Pick date</td>
+			</tr>
+			
+			<tr>
+				<th>General &gt; Set Product As New To Date</th>
+				<td>Pick date</td>
+			</tr>
+		</table>
+		
+		<p class="note">Server time may differ from local time. To mark a product as "new" immediately, set the 
+		"From Date" to yesterday. Then refresh the caches/indices.</p>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>{{block type="catalog/product_new" column_count="2" label="New Products" template="gravdept/catalog/new-products-slider.phtml" }}</code></pre>
+		
+		<table>
+			<tr>
+				<th><code>column_count=""</code></th>
+				<td><code>1</code>, <code>2</code>, <code>3</code>, or <code>4</code> (defaults to <code>2</code>)</td>
+			</tr>
+			
+			<tr>
+				<th><code>label=""</code></th>
+				<td>Set the label (defaults to <code>New Products</code>)</td>
+			</tr>
+		</table>
+		
+		<p class="note">This widget must be used within a <code>&lt;div class="grid-block"&gt;</code> or 
+		<code>&lt;div class="grid"&gt;</code> for proper margins.</p>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+		
+	<!-- Modal Overlay -->
+	
+		<h2 id="modal-overlay">Modal Overlay</h2>
+		
+		<p>A modal overlay for showing additional content.
+		Commonly used for showing enlarged product photos.
+		Uses <a href="http://jacklmoore.com/colorbox/">ColorBox</a>.</p>
+		
+		<table>
+			<tr>
+				<th>jQuery Hook</th>
+				<td>Add <code>class="zoom"</code> to any link.</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;a class="zoom" href="http://example.com/path/to/large/image.jpg"&gt;Show Large Image&lt;/a&gt;</code></pre>
+		<pre><code>&lt;a class="zoom" href="{{skin url="media/modal-overlay/tour/1.png" }}"&gt;Show Large Image&lt;/a&gt;</code></pre>
+		<pre><code>&lt;a class="zoom" href="&lt;?php echo $this-&gt;getSkinUrl('media/modal-overlay/tour/1.png') ?&gt;"&gt;Show Large Image&lt;/a&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.colorbox" after="gravdept.jquery.load" template="gravdept/jquery/fn_colorbox.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+    <!-- Tabs -->
+    	
+		<h2 id="tabs">Tabs</h2>
+		
+		<p>A tabbed content area for showing additional content.
+		Commonly used for showing supplemental info in a small space.</p>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="tabs"&gt;
+    &lt;ul class="tabs-nav"&gt;
+        &lt;li&gt;&lt;a href="#tab-1"&gt;Tab 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab-2"&gt;Tab 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#tab-3"&gt;Tab 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;div class="tabs-content"&gt;
+        &lt;div id="tab-1"&gt;Content for Tab 1.&lt;/div&gt;
+        &lt;div id="tab-2"&gt;Content for Tab 2.&lt;/div&gt;
+        &lt;div id="tab-3"&gt;Content for Tab 3.&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<!-- Promo Slider Right -->
+		
+		<h2 id="promo-slider-right">Promo Slider Right</h2>
+		
+		<p>A 3/4 width slider with detached promo images. 
+		Each main slide can link elsewhere. 
+		Slider pagination is generated automatically. 
+		Each promo image can link elsewhere.
+		Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+		
+		<table>
+			<tr>
+				<th>Main Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/promo-slider-right/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Main Image Dimensions</th>
+				<td>705 x 345</td>
+			</tr>
+			
+			<tr>
+				<th>Promo Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/promo-slider-right/tour/promo/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Promo Image Dimensions</th>
+				<td>210 x 105</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Promos</th>
+				<td>3</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Fixed (requires custom CSS to modify)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="promo-slider promo-slider-right"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-4" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/4.png" }}" alt="Slide 4" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;ul class="promos"&gt;
+        &lt;li&gt;&lt;a href="{{store url="link-4" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/promo/1.png" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="{{store url="link-5" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/promo/2.png" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="{{store url="link-6" }}"&gt;&lt;img src="{{skin url="media/promo-slider-right/tour/promo/3.png" }}" alt="Promo 3" /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+	<!-- Thumb Slider Right -->
+		
+		<h2 id="thumb-slider-right">Thumb Slider Right</h2>
+		
+		<p>A 3/4 width slider with thumbs that are linked as pagination. Each main slide can link elsewhere.
+		Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+		
+		<table>
+			<tr>
+				<th>Main Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/thumb-slider-right/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Main Image Dimensions</th>
+				<td>705 x 345</td>
+			</tr>
+			
+			<tr>
+				<th>Thumb Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/thumb-slider-right/tour/thumb/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Thumb Image Dimensions</th>
+				<td>210 x 105</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>3</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Fixed (requires custom CSS to modify)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="thumb-slider thumb-slider-right"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;ul class="slides-pagination"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/thumb/1.png" }}" alt="Thumb 1" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/thumb/2.png" }}" alt="Thumb 2" /&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;&lt;img src="{{skin url="media/thumb-slider-right/tour/thumb/3.png" }}" alt="Thumb 3" /&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+    
+    <!-- Grid Slider Full -->
+    		
+    		<h2 id="grid-slider-full">Grid Slider Full</h2>
+    		
+    		<p>A full width slider for large images. 
+    		Each slide can link elsewhere. 
+    		Slider pagination is generated automatically.
+    		Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+    		
+    		<table>
+    			<tr>
+    				<th>Image Location</th>
+    				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-full/tour/</code></td>
+    			</tr>
+    			
+    			<tr>
+    				<th>Image Dimensions</th>
+    				<td>930 x 345</td>
+    			</tr>
+    			
+    			<tr>
+    				<th>Number of Slides</th>
+    				<td>Unlimited (be reasonable)</td>
+    			</tr>
+    			
+    			<tr>
+    				<th>Slider Height</th>
+    				<td>Variable (as needed)</td>
+    			</tr>
+    		</table>
+    		
+    		<h3 class="p5">Example Markup:</h3>
+    		
+    		<pre><code>&lt;div class="grid-slider grid-slider-full"&gt;
+        &lt;div class="slides-container"&gt;
+            &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-full/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-full/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-full/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;</code></pre>
+    		
+    		<h3 class="p5">Layout Update XML:</h3>
+    		
+    		<pre><code>&lt;reference name="before_body_end"&gt;
+        &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+    &lt;/reference&gt;</code></pre>
+    
+    <!-- Grid Slider 3/4 -->
+    
+        <h2 id="grid-slider-3-4">Grid Slider 3/4</h2>
+        
+        <p>A three-quarter width slider for images.
+        Each slide can link elsewhere.
+        Slider pagination is generated automatically.
+        Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+        
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-3-4/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>690 x 210</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid-slider grid-slider-3-4"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-3-4/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-3-4/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-3-4/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+    <!-- Grid Slider 2/3 -->
+    
+        <h2 id="grid-slider-2-3">Grid Slider 2/3</h2>
+        
+        <p>A two-third width slider for images.
+        Each slide can link elsewhere.
+        Slider pagination is generated automatically.
+        Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+        
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-2-3/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>610 x 290</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid-slider grid-slider-2-3"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-2-3/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-2-3/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-2-3/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+    <!-- Grid Slider 1/2 -->
+    
+        <h2 id="grid-slider-1-2">Grid Slider 1/2</h2>
+        
+        <p>A one-half width slider for images.
+        Each slide can link elsewhere.
+        Slider pagination is generated automatically.
+        Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+        
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-1-2/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>450 x 450</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid-slider grid-slider-1-2"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-2/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-2/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-2/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+    <!-- Grid Slider 1/3 -->
+    
+        <h2 id="grid-slider-1-3">Grid Slider 1/3</h2>
+        
+        <p>A one-third width slider for images.
+        Each slide can link elsewhere.
+        Slider pagination is generated automatically.
+        Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+        
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-1-3/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>290 x 290</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid-slider grid-slider-1-3"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-3/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-3/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-3/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+    <!-- Grid Slider 1/4 -->
+    
+        <h2 id="grid-slider-1-4">Grid Slider 1/4</h2>
+        
+        <p>A one-fourth width slider for images.
+        Each slide can link elsewhere.
+        Slider pagination is generated automatically.
+        Uses <a href="http://slidesjs.com">SlidesJS</a>.</p>
+        
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/grid-slider-1-4/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>210 x 210</td>
+			</tr>
+			
+			<tr>
+				<th>Number of Slides</th>
+				<td>Unlimited (be reasonable)</td>
+			</tr>
+			
+			<tr>
+				<th>Slider Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid-slider grid-slider-1-4"&gt;
+    &lt;div class="slides-container"&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-4/tour/1.png" }}" alt="Slide 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-4/tour/2.png" }}" alt="Slide 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/grid-slider-1-4/tour/3.png" }}" alt="Slide 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+		<h3 class="p5">Layout Update XML:</h3>
+		
+		<pre><code>&lt;reference name="before_body_end"&gt;
+    &lt;block type="core/template" name="gravdept.jquery.slides" after="gravdept.jquery.load" template="gravdept/jquery/fn_slides.phtml" /&gt;
+&lt;/reference&gt;</code></pre>
+
+	<!-- Static Promo 1/2 -->
+		
+		<h2 id="static-promo-1-2">Static Promo 1/2</h2>
+		
+		<p>A two-unit grid of promo images.
+		Each image can link elsewhere.</p>
+		
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/static-promo-1-2/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>450 x 210</td>
+			</tr>
+			
+			<tr>
+				<th>Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid static-promo static-promo-1-2"&gt;
+    &lt;div class="grid_6"&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-2/tour/1.png" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_6"&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-2/tour/2.png" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<!-- Static Promo 1/3 -->
+		
+		<h2 id="static-promo-thirds">Static Promo 1/3</h2>
+		
+		<p>A three-unit grid of promo images.
+		Each image can link elsewhere.</p>
+		
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/static-promo-1-3/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>290 x 160</td>
+			</tr>
+			
+			<tr>
+				<th>Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid static-promo static-promo-1-3"&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/tour/1.png" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/tour/2.png" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_4"&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-3/tour/3.png" }}" alt="Promo 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+	<!-- Static Promo 1/4 -->
+		
+		<h2 id="static-promo-fourths">Static Promo 1/4</h2>
+		
+		<p>A four-unit grid of promo images.
+		Each image can link elsewhere.</p>
+		
+		<table>
+			<tr>
+				<th>Image Location</th>
+				<td><code>{server}/skin/frontend/gravdept/acumen/media/static-promo-1-4/tour/</code></td>
+			</tr>
+			
+			<tr>
+				<th>Image Dimensions</th>
+				<td>210 x 210</td>
+			</tr>
+			
+			<tr>
+				<th>Height</th>
+				<td>Variable (as needed)</td>
+			</tr>
+		</table>
+		
+		<h3 class="p5">Example Markup:</h3>
+		
+		<pre><code>&lt;div class="grid static-promo static-promo-1-4"&gt;
+    &lt;div class="grid_3"&gt;&lt;a href="{{store url="link-1" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-4/tour/1.png" }}" alt="Promo 1" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_3"&gt;&lt;a href="{{store url="link-2" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-4/tour/2.png" }}" alt="Promo 2" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_3"&gt;&lt;a href="{{store url="link-3" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-4/tour/3.png" }}" alt="Promo 3" /&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;div class="grid_3"&gt;&lt;a href="{{store url="link-4" }}"&gt;&lt;img src="{{skin url="media/static-promo-1-4/tour/4.png" }}" alt="Promo 4" /&gt;&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		
+	</section>
+
+<!-- Snippets -->
+
+    <section id="snippets">
+        
+        <h1>Snippets</h1>
+        
+        <p class="keynote">Snippets are content areas you can update from the Magento Admin.
+        You can turn them on/off as needed with no coding!</p>
+        
+        <p>To add a snippet, create a <dfn>CMS Static Block</dfn> in the Magento Admin with the matching <dfn>Identifier</dfn>.
+        The content will appear automatically.
+        To temporarily disable a Snippet, change the Static Block's status to <code>disabled</code>.
+        There are lots of Snippets to choose from:</p>
+        
+        <ul>
+            <li><a href="#snippet-cart-bottom">Cart Bottom</a></li>
+        	<li><a href="#snippet-cart-coupon-below">Cart Coupon Below</a></li>
+        	<li><a href="#snippet-cart-empty-bottom">Cart Empty Bottom</a></li>
+        	<li><a href="#snippet-cart-list-below">Cart List Below</a></li>
+        	<li><a href="#snippet-catalog-list-below">Catalog List Below</a></li>
+        	<li><a href="#snippet-catalog-sidebar-below">Catalog Sidebar Below</a></li>
+        	<li><a href="#snippet-checkout-onepage-progress-below">Checkout OnePage Progress Below</a></li>
+        	<li><a href="#snippet-checkout-onepage-steps-below">Checkout OnePage Steps Below</a></li>
+        	<li><a href="#snippet-checkout-onepage-top">Checkout OnePage Top</a></li>
+        	<li><a href="#snippet-cms-page-bottom">CMS Page Bottom</a></li>
+        	<li><a href="#snippet-nav-after">Nav After</a></li>
+        	<li><a href="#snippet-nav-before">Nav Before</a></li>
+        	<li><a href="#snippet-product-view-bottom">Product View Bottom</a></li>
+        	<li><a href="#snippet-product-view-tab-1">Product View Tab 1</a></li>
+        	<li><a href="#snippet-product-view-tab-2">Product View Tab 2</a></li>
+        </ul>
+        
+    <!-- Cart Bottom -->
+        		
+		<h2 id="snippet-cart-bottom">Cart Bottom</h2>
+		
+		<table>
+			<tr>
+				<th>Visible On</th>
+				<td>Cart (at least one item)</td>
+			</tr>
+			
+			<tr>
+				<th>Block Title</th>
+				<td>Snippet: Cart Bottom</td>
+			</tr>
+			
+			<tr>
+				<th>Identifier</th>
+				<td>snippet_cart_bottom</td>
+			</tr>
+		</table>
+	
+	<!-- Cart Coupon Below -->
+	    		
+		<h2 id="snippet-cart-coupon-below">Cart Coupon Below</h2>
+		
+		<table>
+			<tr>
+				<th>Visible On</th>
+				<td>Cart (at least one item)</td>
+			</tr>
+			
+			<tr>
+				<th>Block Title</th>
+				<td>Snippet: Cart Coupon Below</td>
+			</tr>
+			
+			<tr>
+				<th>Identifier</th>
+				<td>snippet_cart_coupon_below</td>
+			</tr>
+		</table>
+		    
+	<!-- Cart Empty Bottom -->
+	    		
+		<h2 id="snippet-cart-empty-bottom">Cart Empty Bottom</h2>
+		
+		<table>
+			<tr>
+				<th>Visible On</th>
+				<td>Cart (empty only)</td>
+			</tr>
+			
+			<tr>
+				<th>Block Title</th>
+				<td>Snippet: Cart Empty Bottom</td>
+			</tr>
+			
+			<tr>
+				<th>Identifier</th>
+				<td>snippet_cart_empty_bottom</td>
+			</tr>
+		</table>
+
+    <!-- Cart Bottom -->
+        		
+    	<h2 id="snippet-cart-list-below">Cart List Below</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Cart (at least one item)</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Cart List Below</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_cart_list_below</td>
+    		</tr>
+    	</table>
+    
+    <!-- Catalog List Below -->
+        		
+    	<h2 id="snippet-catalog-list-below">Catalog List Below</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Catalog lists (category, search, tagged)</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Catalog List Below</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_catalog_list_below</td>
+    		</tr>
+    	</table>
+    
+    <!-- Catalog Sidebar Below -->
+        		
+    	<h2 id="snippet-catalog-sidebar-below">Catalog Sidebar Below</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Catalog lists (category, search, tagged)</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Catalog Sidebar Below</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_catalog_sidebar_below</td>
+    		</tr>
+    	</table>
+    	
+    <!-- Checkout OnePage Progress Below -->
+        		
+    	<h2 id="snippet-checkout-onepage-progress-below">Checkout OnePage Progress Below</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>OnePage Checkout</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Checkout OnePage Progress Below</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_checkout_onepage_progress_below</td>
+    		</tr>
+    	</table>
+    	
+    <!-- Checkout OnePage Steps Below -->
+        		
+    	<h2 id="snippet-checkout-onepage-steps-below">Checkout OnePage Steps Below</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>OnePage Checkout</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Checkout OnePage Steps Below</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_checkout_onepage_steps_below</td>
+    		</tr>
+    	</table>
+    	
+    <!-- Checkout OnePage Top -->
+        		
+    	<h2 id="snippet-checkout-onepage-top">Checkout OnePage Top</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>OnePage Checkout</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Checkout OnePage Top</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_checkout_onepage_top</td>
+    		</tr>
+    	</table>
+    
+    <!-- Checkout CMS Page Bottom -->
+        		
+    	<h2 id="snippet-cms-page-bottom">Checkout CMS Page Bottom</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>All CMS Pages</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Checkout CMS Page Bottom</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_cms_page_bottom</td>
+    		</tr>
+    	</table>
+    
+    <!-- Nav After -->
+        		
+    	<h2 id="snippet-nav-after">Nav After</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Header</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Nav After</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_nav_after</td>
+    		</tr>
+    	</table>
+    	
+    	<h3 class="p5">Example Markup:</h3>
+    	
+    	<pre><code>&lt;li class=&quot;level0 level-top&quot;&gt;
+    &lt;a href=&quot;{{store url='contact' }}&quot;&gt;Contact&lt;/a&gt;
+&lt;/li&gt;</code></pre>
+        
+        <p class="note">Markup should follow the pattern established by Magento's generated navigation for categories.
+        Replicating the markup and class structure lets you reuse the catalog navigation's styles without writing extra CSS.</p>
+    
+    <!-- Nav Before -->
+            		
+    	<h2 id="snippet-nav-before">Nav Before</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Header</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Nav Before</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_nav_before</td>
+    		</tr>
+    	</table>
+    	
+    	<h3 class="p5">Example Markup:</h3>
+    	
+    	<pre><code>&lt;li class=&quot;level0 level-top&quot;&gt;
+    &lt;a class=&quot;home-icon&quot; href=&quot;{{store url='' }}&quot;&gt;Home&lt;/a&gt;
+&lt;/li&gt;</code></pre>
+        
+        <p class="note">Removing the <code>home-icon</code> class will show the "Home" link as text instead.</p>
+    
+    <!-- Product View Bottom -->
+        		
+    	<h2 id="snippet-product-view-bottom">Product View Bottom</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Product Page</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Product View Bottom</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_product_view_bottom</td>
+    		</tr>
+    	</table>
+    
+    <!-- Product View Tab 1 -->
+        		
+    	<h2 id="snippet-product-view-tab-1">Product View Tab 1</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Product Page</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Product View Tab 1</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_product_view_tab_1</td>
+    		</tr>
+    	</table>
+    
+    <!-- Product View Tab 2 -->
+        		
+    	<h2 id="snippet-product-view-tab-2">Product View Tab 2</h2>
+    	
+    	<table>
+    		<tr>
+    			<th>Visible On</th>
+    			<td>Product Page</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Block Title</th>
+    			<td>Snippet: Product View Tab 2</td>
+    		</tr>
+    		
+    		<tr>
+    			<th>Identifier</th>
+    			<td>snippet_product_view_tab_2</td>
+    		</tr>
+    	</table>
+        
+    </section>
+    
+<!-- Personalize -->
+	
+	<section id="personalize">
+	
+		<h1>Personalize</h1>
+		
+		<p class="keynote">The demo content looks nice, but you probably want to make some adjustments. Get started with these:</p>
+	
+	<!-- The Header -->
+		
+		<h2>The Header</h2>
+		
+		<p>Magento's navigation only includes categories. Other links can be added using 
+		<a href="#snippet-nav-before">Snippet: Nav Before</a> and <a href="#snippet-nav-after">Snippet: Nav After</a>.</p>
+		
+	<!-- The Footer -->
+		
+		<h2>The Footer</h2>
+		
+		<p>Footer links are hard-coded for simplicity, edit this file:<br>
+		<code>{server}/app/design/frontend/gravdept/acumen/template/page/html/footer.phtml</code></p>
+		
+		<p>External links can use plain HTML, but Magento has a special method for internal links:
+		<code>&lt;?php echo $this-&gt;getUrl('some-page') ?&gt;</code></p>
+		
+	<!-- Page: Home -->
+	
+		<h2>Page: Home</h2>
+		
+		<p>Tailor this content to your needs. Mix and match different <a href="#ui-widgets">UI Widgets</a> for options. 
+		Use the grid system to create custom layouts.</p>
+	
+	<!-- Page: Contact -->
+		
+		<h2>Page: Contact</h2>
+		
+		<p>Update the phone number:
+		"Magento Admin &gt; System &gt; Configuration &gt; General &gt; General &gt; Store Information &gt; Store Contact Telephone"</p>
+		
+		<p>Update the support email:
+		"Magento Admin &gt; System &gt; Configuration &gt; General &gt; Store Email Addresses &gt; Customer Support &gt; Sender Email"</p>
+		
+	<!-- Custom CSS -->
+	
+		<h2>Custom CSS</h2>
+		
+		<p>Custom CSS should be written in this stylesheet only:<br>
+		<code>{server}/skin/frontend/gravdept/acumen/css/override.css</code></p>
+		
+		<p class="note">The primary stylesheet is <code>base.min.css</code>, which is a compressed copy of
+		<code>base.css</code>. The uncompressed version is included for reference, but is not used in templates.</p>
+		
+		<p class="warn">Do not edit <code>base.css</code> or <code>base.min.css</code> to avoid a maintenance 
+		nightmare. These files receive numerous updates in every release.</p>
+	
+	<!-- Modifying Layout and Template Code -->
+		
+		<h2>Modifying Layout and Template Code</h2>
+		
+		<p>You're free to do this, but your modifications are your responsibility. 
+		GravDept cannot provide debugging or maintenance support.
+		Always clearly document which files you've changed for your reference.
+		This will make your job easier during upgrades.
+		Major modifications benefit from a stricter package/theme fallback hierarchy like:</p>
+		
+		<p><dfn>base/default</dfn> &gt; <dfn>gravdept/default</dfn> &gt; <dfn>gravdept/acumen</dfn> &gt; <dfn>gravdept/custom</dfn></p>
+		
+	<!-- Extensions -->
+	
+		<h2>Extensions</h2>
+		
+		<p>Theme and extension compatibility is an issue for all platforms, including Magento. 
+		Themes aren't tested with every extension for the same reason extensions aren't tested with every theme. 
+		It's a many:many relationship, so both sides try to coexist by working off the core Magento code.
+    		
+		<p>Naturally, there can be conflicts when integrating custom code that was developed independently. 
+		Sometimes the theme or extension needs to be modified so they can work together.</p>
+		
+		<p>In general, GravDept recommends avoiding extensions as much as possible. 
+		This minimizes your risk that future updates will break critical functionality. 
+		This is especially true for extensions that affect transactions and finances.</p>
+		
+		<p class="note">GravDept does not support or offer consulting for extension debugging.</p>
+		
+	<!-- Language Translation -->
+	
+		<h2>Language Translation</h2>
+		
+		<p>A CSV for <code>en_US</code> translations of Magento phrases and custom phrases used in this theme is included for your reference:<br>
+		<code>{server}/app/design/frontend/gravdept/acumen/locale/en_US/translate.csv</code></p>
+		
+		<p class="note">Some phrases in this theme are not part of the standard set that Magento's CSV 
+		<a href="http://www.magentocommerce.com/translations">language packs</a> provide translations for.
+		Multi-language stores will need to supplement these packs.</p>
+		
+	</section>
+
+<!-- Upgrades -->
+	
+	<section id="upgrades">
+	
+		<h1>Upgrades</h1>
+		
+		<p class="keynote">Acumen is regularly updated with new features, improvements, fixes, and support for the latest 
+		Magento releases.</p>
+		
+		<p>Magento's core development dictates how Acumen is developed.
+		Magento does not maintain previous releases with patches or branches.
+		New features, updates, and fixes always result in a new release.
+		In this way, Magento avoids forward or backward compatibility conflicts because each new release deprecates the previous release.
+		This is efficient and simple.</p>
+		
+		<p>Acumen's development mirrors this practice. 
+		When Magento publishes a new release, then Acumen publishes a new release to maintain compatibility.
+		The relationship between Acumen and Magento releases is <dfn>many:one</dfn>. For example:</p>
+		
+		<ul>
+			<li><dfn>Magento 1.5.0.1</dfn> had three Acumen releases: <dfn>Acumen 1.2.5</dfn> <dfn>Acumen 1.2.6</dfn> <dfn>Acumen 1.2.7</dfn></li>
+			<li><dfn>Acumen 1.2.6</dfn> is for <dfn>Magento 1.5.0.1</dfn> only.</li>
+			<li>Therefore <dfn>Acumen 1.2.6</dfn> cannot be used with <dfn>Magento 1.4.2.0</dfn> or <dfn>Magento 1.6.0.0</dfn>.</li>
+		</ul>
+		
+		<p>Acumen's development always results in a new release, which deprecates the previous release.
+		New features, updates, and fixes are never retroactively added to previous releases.
+		Acumen releases are always published for the latest stable Magento release.</p>
+		
+	<!-- Responsibility -->
+		
+		<h2>Responsibility</h2>
+		
+		<ul>
+			<li>You are responsible for upgrading Acumen and the Magento core.</li>
+			<li>You are responsible for merging your modifications.</li>
+		</ul>
+		
+	<!-- Upgrading Magento -->
+		
+		<h2>Upgrading Magento</h2>
+		
+		<p>Magento core upgrades are tricky.
+		Make full backups of the filesystem and database, then create a <a href="http://www.crucialwebhost.com/blog/setting-up-a-magento-staging-area/">staging environment</a> to test the core upgrade.
+		If everything tests smoothly, then repeat the process for the production store &mdash; usually during off peak hours in case of problems.
+		Be prepared to restore to your backups if necessary.</p>
+		
+		<p class="warn">Never allow Magento's core to fall more than one release behind. 
+		Ignoring updates increases risk, and upgrading over multiple releases at once is more difficult.</p>
+		
+		<p class="note">Do not upgrade Magento's core until an official theme release supports it unless you plan to fully maintain the theme moving forward.</p>
+		
+	<!-- Upgrading Acumen -->
+	
+		<h2>Upgrading Acumen</h2>
+		
+		<p class="note">To upgrade Acumen, upgrading the Magento core will sometimes be required.
+		Check the <a href="http://acumen-magento.gravdept.com/tour/changelog/">changelog</a> for details.</p>
+		
+		<h3>The Easy Way</h3>
+		
+		<p>If you haven't modified Acumen, simply remove the previous release and follow the new release's documentation: <code>{item-zip}/readme.html</code>.</p>
+		
+		<h3>The Hard Way</h3>
+		
+		<p>If you have modified Acumen, merging your customizations will be required.
+		File differencing applications like <a href="http://www.kaleidoscopeapp.com/">Kaleidoscope</a> or 
+		<a href="http://www.dotfork.com/difffork/">DiffFork</a> are useful in conjunction with the <a href="http://acumen-magento.gravdept.com/tour/changelog/">changelog</a>.</p>
+		
+		<p class="warn">Do not skip releases. The commit notes for each release assume all prior releases were completely applied.</p>
+		
+	<!-- Requesting Previous Releases -->
+		
+		<h2>Requesting Previous Releases</h2>
+		
+		<p>Only the latest Acumen release is bundled in the <code>{item-zip}</code>.
+		If you require a previous release, send a <a href="#support">support request</a> indicating the exact version needed.</p>
+		
+	</section>
+
+<!-- Troubleshooting -->
+	
+	<section id="troubleshooting">
+		
+		<h1>Troubleshooting</h1>
+		
+		<p class="keynote">Magento has a steep learning curve, but you can teach yourself to master it.
+		These tips will get you an answer 99% of the time:</p>
+		
+	<!-- Use Google -->
+		
+		<h2>Use Google to learn</h2>
+		
+		<p>It's simple and very effective. Search <code>magento</code> followed by <code>some phrase</code> you need help with.
+		For example, try these:<br>
+		
+		<ul>
+			<li><a href="http://www.google.com/search?q=magento+create+category">magento create category</a></li>
+			<li><a href="http://www.google.com/search?q=magento+product+types">magento product types</a></li>
+			<li><a href="http://www.google.com/search?q=magento+how+to+use+promotions">magento how to use promotions</a></li>
+		</ul>
+		
+	<!-- Refresh Cache/Indices -->
+	
+		<h2>Refresh Caches/Indices</h2>
+		
+		<p>Most problems can be solved by a simple refresh, see: <a href="#magento-basics">Magento Basics</a>.</p>
+	
+	<!-- Product Misconfiguration -->
+		
+		<h2>Product Misconfiguration</h2>
+			
+		<p>Each product must have the following properties to be visible on the frontend:</p>
+		
+		<table>
+			<tr>
+				<th>General &gt; Status</th>
+				<td>Enabled</td>
+			</tr>
+			
+			<tr>
+				<th>General &gt; Visibility</th>
+				<td>Catalog, Search (minimum of Catalog)</td>
+			</tr>
+			
+			<tr>
+				<th>Inventory &gt; Qty</th>
+				<td>1 (or more, must be positive)</td>
+			</tr>
+			
+			<tr>
+				<th>Inventory &gt; Stock Availability</th>
+				<td>In Stock</td>
+			</tr>
+		</table>
+		
+	<!-- UI Widgets Aren't Working -->
+		
+		<h2>UI Widgets Aren&rsquo;t Working</h2>
+		
+		<p>Each product collection retrieved for a slider must contain enough products to fill at least two slides. 
+		For example, the minimum number of products required in a 2-column slider is three products.</p>
+		
+		<p>Double-check the required jQuery resource is loaded. For some widgets this must be added via <dfn>Layout XML</dfn>.</p>
+		
+	<!-- Reread this Document -->
+	
+		<h2>Reread This Document</h2>
+		
+		<p>Seriously, all the info is here if you read the instructions thoroughly.</p>
+		
+	</section>
+
+<!-- Support -->
+
+	<section id="support">
+		
+		<h1>Support</h1>
+		
+	<!-- Philosophy -->
+	
+		<h2>Philosophy</h2>
+		
+		<p>ThemeForest does not require authors to provide support. This allows them to offer significantly lower 
+		prices than other marketplaces. When you buy from ThemeForest, you are paying for the time and experience 
+		that GravDept has invested in building and maintaining a product. It does not entitle you to our time now 
+		or in the future. That's fair for everyone.</p>
+		
+		<h3>We offer support</h3>
+		
+		<p>A lot actually. GravDept has answered thousands of questions in direct messages and item comments. 
+		Magento has a steep learning curve, and we'll help if you're having trouble.
+		If your problem steers into customization or consulting we'll tell you and direct you to information 
+		on <a href="#hiring-us">hiring us</a>.</p>
+		
+	<!-- Buyer Verification -->
+	
+		<h2>Buyer Verification</h2>
+		
+		<p>All support requests are verified for purchase proof before support is given.
+		If you're working on a client's behalf expect to be asked for purchase verification regardless.
+		ThemeForest authors cannot verify who purchased an item unless you initiate contact.</p>
+		
+	<!-- Contacting Us -->
+		
+		<h2>Contacting Us</h2>
+		
+		<p>Send a direct message from our ThemeForest profile:<br>
+		<a href="http://gravitydept.com/to/themeforest">http://gravitydept.com/to/themeforest</a></p>
+		
+		<p>Or leave a comment on the item page:<br>
+		<a href="http://gravitydept.com/to/acumen-magento">http://gravitydept.com/to/acumen-magento</a></p>
+		
+		<p class="warn">Do not email GravDept directly for ThemeForest support.
+		We cannot verify purchases by email address or username, and we'll ask you to contact us again via ThemeForest.
+		Save us both the trouble.</p>
+		
+	</section>
+
+<!-- Hiring Us -->
+	
+	<section id="hiring-us">
+	
+		<h1>Hiring Us</h1>
+		
+	<!-- Theme Installation -->
+	
+		<h2>Theme Installation</h2>
+		
+		<p>GravDept will install/configure Acumen for USD $100.00 on Magento-compatible hosting. 
+		<a href="#support">Contact us</a> if this was way too technical for you.
+		Please allow at least one week for availability.</p>
+		
+	<!-- Customization and Consulting -->
+	
+		<h2>Customization &amp; Consulting</h2>
+		
+		<p>Many buyers have hired GravDept for additional help such as:</p>
+		
+		<ul>
+			<li>Custom design / development</li>
+			<li>Creating products / categories / attributes</li>
+			<li>Server infrastructure advice</li>
+			<li>Payment gateway advice</li>
+			<li>Email marketing applications</li>
+			<li>Operations strategy</li>
+			<li>Magento training</li>
+			<li>Blog / social network integration</li>
+		</ul>
+		
+		<h3>How GravDept works</h3>
+		
+		<p>Nowadays GravDept is primarily focused on long-term projects. 
+		We're normally booked about six months in advance, and don't schedule small (under 5 hours) customization / consulting jobs very often.
+		When we do, it's on retainer for work-to-be-completed or Q&amp;A. 
+		The minimum consulting amount is one half hour at $100/hour.</p>
+		
+		<p>During downtime on long-term projects we work through the queue of small jobs, but booked projects have first priority. 
+		Usually we can address small jobs within several weeks depending on complexity and availability. 
+		Please plan accordingly.</p>
+		
+	</section>
+
+<!-- Donate -->
+	
+	<section id="donate">
+	
+		<h1>Donate</h1>
+		
+		<p class="keynote">Why should you donate to GravDept after paying us for a theme? Let us explain.</p>
+		
+		<p>ThemeForest is a great marketplace but it has downsides.
+		Authors can't set/control the price of their items, and ThemeForest takes a cut of every sale (between 30%&ndash;50%).</p>
+		
+		<p>Item updates are 100% free for buyers, whether they bought it yesterday or 2 years ago.
+		Most items don't require significant updates to stay functional (like email or site templates).
+		Even WordPress themes are fairly resiliant to core updates. 
+		Magento themes are the opposite.</p>
+		
+	<!-- Sustainable development -->
+		
+		<h2>Sustainable development</h2>
+		
+		<p>Maintaining a high-quality Magento frontend takes <strong>hundreds and hundreds of hours</strong> per year.</p>
+		
+		<p>Since ThemeForest doesn't have a system in place for paid updates, every buyer gets thousands of dollars worth of development for free.
+		You're probably thinking, "I know. It's awesome for me."</p>
+		
+		<p>It's less awesome for authors. 
+		ThemeForest's pricing policies incentivize authors to ignore previous buyers because authors can't monetize the lifecycle of maintaining an item.</p>
+		
+		<p><strong>FACT: It's 10x harder to attract a new customer than to retain an existing customer.</strong></p>
+		
+		<p>ThemeForest has its priorities backwards.
+		It only profits from new sales.
+		GravDept would prefer to fully support its products and customers, but that takes an increasingly large time investment with no returns.</p>
+		
+	<!-- Why -->
+		
+		<h2>Why should you donate?</h2>
+		
+		<p>If your business depends on a reliable, well-tested Magento theme that stays updated year-round, then donating helps sustain that product.
+		Investing in GravDept is an investment in your business.</p>
+		
+	<!-- When -->
+	    
+		<h2>When should you donate?</h2>
+		
+		<p>It's up to you. Here are some suggestions:</p>
+		
+		<ul>
+		    <li>When this theme is updated, if you found it valuable &mdash; send a donation.</li>
+		    <li>When Magento's core is updated, and this theme is updated to support it &mdash; send a donation.</li>
+		    <li>Once a month, every six months, or yearly &mdash; send a donation.</li>
+		</ul>
+		
+	<!-- How much -->
+		
+		<h2>How much should you donate?</h2>
+		
+		<p>Again, it's up to you. 
+		A small update might be worth $50. 
+		A major update might be worth $300. 
+		Maybe your business is booming and a nice $1000 thank-you is in order.</p>
+		
+		<p>Consider how much it would cost to hire a developer to maintain this theme instead, including the time for them to become familiar with everything in it.
+		If you're taking advantage of its free updates, then you've already saved at least $1000/month. No exaggeration.</p>
+		
+	<!-- Donate button -->
+		
+		<p><a class="button button-donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZGPDJ24D6S7AL">Donate</a><br>
+	    
+	    <p class="note">PayPal, Visa, MasterCard, Discover, and American Express are accepted.</p>
+	    
+		<p class="note">Donations are not favors or bribes.
+		They don't equate to "priority support" or special treatment.
+		It's simply a way for you to support sustained development of a product you love and depend on.</p>
+		
+	</section>
+
+<!-- The End -->
+	
+	<section id="the-end">
+	
+		<h1>The End</h1>
+		
+		<p class="keynote">All your dreams came true. That probably feels great.
+		You should <a href="http://wiki.envato.com/buying/support-buying/how-to-give-feedback-on-items/">rate this item</a> (five stars, please) and leave us some glowing comments on ThemeForest.</p>
+		
+		<p class="keynote">Thank you,<br>
+		Gravity Department</p>
+		
+	</section>
+	
+</div>
+
+<footer>Copyright &copy; 2013 <a href="http://gravitydept.com">Gravity Department</a>. All rights reserved.</footer>
+
+</body>
+</html>
