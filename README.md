@@ -11,7 +11,7 @@ Database schema: /resources/db.sql
 Acumen theme config instruction: /resources/acumen/readme.html
 
 
-**NOTE: After checkout the code, make sure you add .gitignore file
+**NOTE: After checkout the code, make sure you add .gitignore file to your local git
 
 app/etc/local.xml
 var/cache
