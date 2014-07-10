@@ -13,4 +13,47 @@
 /*  CUSTOM OVERRIDES FOR BASE.CSS
 /*--------------------------------------------------------------------------------------------------*/
 
+@import url(//fonts.googleapis.com/css?family=Didact+Gothic);
+
 /* your code here */
+body, button, input, select, table, textarea{
+	font-family: 'Didact Gothic', sans-serif;
+	letter-spacing:1px;
+}
+a{
+	color:rgb(253,184,19);	
+}
+a:hover{
+	color:rgb(253,184,19);	
+}
+#wrapper{
+	border-top:none;	
+}
+#logo{
+	max-width:100%;	
+}
+#logo h1{
+	margin:5px 0 0;
+}
+#header #header-bar{
+	background:none;	
+}
+#search-form{
+	border:1px solid #000;	
+}
+#nav li.level0>a{
+	color:#000;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.product-image:hover img{
+	border-color:rgb(253,184,19);	
+}
+.product-name{
+	color:#000;	
+}
+.pager ol.pages li a{
+	color:#000;	
+}
+.current{
+	color:rgb(253,184,19);		
+}
