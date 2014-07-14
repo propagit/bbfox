@@ -26,6 +26,9 @@ a{
 a:hover{
 	color:rgb(253,184,19);	
 }
+#mini-cart:hover ul.links li a {	
+	color:rgb(253,184,19);	
+}
 #wrapper{
 	border-top:none;	
 }
@@ -48,11 +51,27 @@ a:hover{
 #nav li.level0 img {
 	margin-top: 4px;
 }
+#nav li.level1 {
+}
+
+.grid-slider .slides-container a:hover:after, .promo-slider .slides-container a:hover:after, .promo-slider .promos li a:hover:after, .static-promo a:hover:after, .wide-slider .slides-container a:hover:after, .thumb-slider .slides-container a:hover:after, .thumb-slider .slides-pagination li a:hover:after {
+	border-color: rgb(253,184,19);
+}
+.menu, .search-autocomplete, .button {
+	background: rgb(253,184,19);
+}
+
 .product-image:hover img{
 	border-color:rgb(253,184,19);	
 }
 .product-name{
 	color:#000;	
+}
+.newsletter .validation-advice:after {
+	border-top: 5px solid rgb(253,184,19);
+}
+.newsletter .validation-advice {
+	border-color: rgb(253,184,19);
 }
 .pager ol.pages li a{
 	color:#000;	
