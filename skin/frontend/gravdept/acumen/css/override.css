@@ -13,7 +13,7 @@
 /*  CUSTOM OVERRIDES FOR BASE.CSS
 /*--------------------------------------------------------------------------------------------------*/
 
-@import url(//fonts.googleapis.com/css?family=Didact+Gothic);
+@import url(//fonts.googleapis.com/css?family=Josefin+Sans);
 
 /* your code here */
 body, button, input, select, table, textarea{
@@ -45,6 +45,9 @@ a:hover{
 	color:#000;
 	font-family: 'Didact Gothic', sans-serif;
 }
+#nav li.level0 img {
+	margin-top: 4px;
+}
 .product-image:hover img{
 	border-color:rgb(253,184,19);	
 }
@@ -56,4 +59,21 @@ a:hover{
 }
 .current{
 	color:rgb(253,184,19);		
+}
+#footer-bar {
+	background: transparent;
+}
+#footer .top {
+	color: #000;
+}
+.newsletter label {
+	color: #000;
+}
+.newsletter #newsletter-email {
+	border: 1px solid #ccc;
+}
+.footer-links a {
+	color: #000;
+}
+.terms a {
 }
