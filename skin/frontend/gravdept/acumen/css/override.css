@@ -17,7 +17,7 @@
 
 /* your code here */
 body, button, input, select, table, textarea{
-	font-family: 'Didact Gothic', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 	letter-spacing:1px;
 }
 a{
@@ -46,7 +46,7 @@ a:hover{
 }
 #nav li.level0>a{
 	color:#000;
-	font-family: 'Didact Gothic', sans-serif;
+	font-family: 'Josefin Sans', sans-serif;
 }
 #nav li.level0 img {
 	margin-top: 4px;
