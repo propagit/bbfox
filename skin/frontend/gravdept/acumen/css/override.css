@@ -13,18 +13,25 @@
 /*  CUSTOM OVERRIDES FOR BASE.CSS
 /*--------------------------------------------------------------------------------------------------*/
 
-@import url(//fonts.googleapis.com/css?family=Josefin+Sans);
+@import url(http://fonts.googleapis.com/css?family=Didact+Gothic);
 
 /* your code here */
 body, button, input, select, table, textarea{
-	font-family: 'Josefin Sans', sans-serif;
+	font-family: 'Didact Gothic', sans-serif;
 	letter-spacing:1px;
 }
 a{
 	color:rgb(253,184,19);	
 }
-a:hover{
-	color:rgb(253,184,19);	
+a:hover {
+	color: rgb(253,184,19);	
+}
+.dashboard-links a:hover {
+	color: #fff;
+	background: rgb(253,184,19);
+}
+textarea:focus, .input-text:focus {
+	border-color: rgb(253,184,19);
 }
 #mini-cart:hover ul.links li a {	
 	color:rgb(253,184,19);	
@@ -46,7 +53,6 @@ a:hover{
 }
 #nav li.level0>a{
 	color:#000;
-	font-family: 'Josefin Sans', sans-serif;
 }
 #nav li.level0 img {
 	margin-top: 4px;
