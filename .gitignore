@@ -3,3 +3,12 @@
 app/etc/local.xml
 var/cache
 var/session
+
+# Ignore lightspeed 
+app/code
+app/etc/modules
+downloader
+var/package
+
+# Ignore media
+media
